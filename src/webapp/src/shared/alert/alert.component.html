@@ -1,0 +1,9 @@
+
+<nz-alert *ngIf = "showAlert"
+      [nzType]="type"
+      [nzMessage]="message"
+      [nzDescription]="description"
+      [nzShowIcon]="showIcon"
+      nzCloseable
+      (nzOnClose)="afterClose()"
+>

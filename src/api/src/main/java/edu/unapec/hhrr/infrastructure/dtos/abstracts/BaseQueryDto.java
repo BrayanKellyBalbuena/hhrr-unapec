@@ -6,4 +6,5 @@ import lombok.Data;
 public abstract class BaseQueryDto<ID> {
     protected ID id;
     protected boolean isActive;
+    protected long version;
 }

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Entity(name = "Employee")
 @Table(name = "employees", indexes = {@Index(name = "idx_employees_isActive", columnList = "is_active"),
-        @Index(name = "idx_employees_firstName", columnList = "first_name"),
+        @Index(name = "idx_employees_first_name", columnList = "first_name"),
         @Index(name = "idx_employees_last_name", columnList = "last_name")})
 @Where(clause = "is_active = true")
 public class Employee extends AuditableEntity<Long> {

@@ -10,8 +10,8 @@ import java.util.Set;
 @Entity(name = "Candidate")
 @Where(clause = "is_active = true")
 @Table(name = "candidates", indexes = {@Index(name = "idx_candidates_isActive", columnList = "is_active"),
-        @Index(name = "idx_employees_firstName", columnList = "first_name"),
-        @Index(name = "idx_employees_last_name", columnList = "last_name")})
+        @Index(name = "idx_candidates_first_name", columnList = "first_name"),
+        @Index(name = "idx_candidates_last_name", columnList = "last_name")})
 public class Candidate extends Person<Long> {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "candidate")
     private Set<WorkExperience> workExperiences = new HashSet<>();

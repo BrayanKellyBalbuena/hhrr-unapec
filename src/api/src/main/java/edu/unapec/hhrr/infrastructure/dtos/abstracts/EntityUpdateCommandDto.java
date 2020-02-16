@@ -3,6 +3,6 @@ package edu.unapec.hhrr.infrastructure.dtos.abstracts;
 import lombok.Data;
 
 @Data
-public abstract class EntityUpdateCommandDto<ID> {
-    ID id;
+public abstract class EntityUpdateCommandDto<ID> extends AuditableQueryQueryDto<ID>{
+
 }

@@ -1,12 +1,14 @@
 package edu.unapec.hhrr.core.entities;
 
 import edu.unapec.hhrr.core.entities.abstracts.Catalog;
+import lombok.Data;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity()
 @Where(clause = "is_active = true")
 @Table(name="languages", indexes = {@Index(name = "idx_language_isActive", columnList = "is_active"),

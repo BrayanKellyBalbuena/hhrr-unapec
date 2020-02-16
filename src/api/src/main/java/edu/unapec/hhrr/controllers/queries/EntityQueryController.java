@@ -2,11 +2,11 @@ package edu.unapec.hhrr.controllers.queries;
 
 import edu.unapec.hhrr.core.entities.abstracts.AuditableEntity;
 import edu.unapec.hhrr.infrastructure.dtos.abstracts.BaseQueryDto;
+import edu.unapec.hhrr.infrastructure.dtos.queries.PageRequestDto;
 import edu.unapec.hhrr.infrastructure.exceptions.ResourceNotFoundException;
 import edu.unapec.hhrr.infrastructure.services.queries.EntityQueryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -26,12 +26,9 @@ public abstract class EntityQueryController<TEntity extends AuditableEntity , TD
     }
 
     @GetMapping()
-    public Page<TDto> get(Pageable pageable) {
-        var entities = queryService.findAll(pageable);
-
-        Page<TDto> dtoPage = entities.map(entity -> mapper.map(entity, dtoClass));
-
-        return dtoPage;
+    public Page<TDto> get(PageRequestDto pageRequest) {
+     var a =   queryService.findAll(pageRequest).map(entity -> mapper.map(entity, dtoClass));
+        return a;
     }
 
     @GetMapping("/{id}")
