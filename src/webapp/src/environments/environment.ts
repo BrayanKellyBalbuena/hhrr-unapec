@@ -11,7 +11,10 @@ export const environment = {
 };
 
 export const endPoints = {
-  languages:  environment.host + environment.port + environment.api + 'languages/'
+  languages:  environment.host + environment.port + environment.api + 'languages/',
+  riskLevels:  environment.host + environment.port + environment.api + 'risk_levels/',
+  skills:  environment.host + environment.port + environment.api + 'skills/',
+  institutions: environment.host + environment.port + environment.api + 'institutions/'
 };
 
 /*

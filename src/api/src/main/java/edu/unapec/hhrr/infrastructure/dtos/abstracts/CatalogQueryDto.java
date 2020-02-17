@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 @Data
-public abstract class CatalogQueryDto<ID> extends AuditableQueryQueryDto<ID> {
+public abstract class CatalogQueryDto<ID> extends AuditableQueryDto<ID> {
     @NotNull
     protected String name;
     @NotNull

@@ -1,8 +1,8 @@
 package edu.unapec.hhrr.controllers.commands;
 
 import edu.unapec.hhrr.core.entities.Language;
-import edu.unapec.hhrr.infrastructure.dtos.commands.LanguageCreateCommandDto;
-import edu.unapec.hhrr.infrastructure.dtos.commands.LanguageUpdateCommandDto;
+import edu.unapec.hhrr.infrastructure.dtos.commands.language.LanguageCreateCommandDto;
+import edu.unapec.hhrr.infrastructure.dtos.commands.language.LanguageUpdateCommandDto;
 import edu.unapec.hhrr.infrastructure.services.commands.LanguageCommandService;
 import io.swagger.annotations.Api;
 import org.modelmapper.ModelMapper;

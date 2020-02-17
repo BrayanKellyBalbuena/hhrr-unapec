@@ -3,12 +3,22 @@
       <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
         <div class="logo"></div>
         <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+          <li  nz-submenu *ngFor="let submenu of navitationSubmenus" [nzTitle] = "submenu.title"
+           [nzIcon] = "submenu.icon">
+            <ul *ngIf="submenu.items.length > 0">
+              <li *ngFor="let item of submenu.items" nz-menu-item>
+                <a [routerLink]= "item.url">{{item.title}}</a>
+              </li>
+            </ul>
+          </li>
           <li nz-submenu nzTitle="User" nzIcon="user">
             <ul>
               <li nz-menu-item>Tom</li>
               <li nz-menu-item>Bill</li>
               <li nz-menu-item>Alex</li>
-              <li nz-menu-item><a [routerLink]="'/languages'" routerLinkActive="active"> Dashboard </a></li>
+              <li nz-menu-item>
+                <a [routerLink]="'/languages'" routerLinkActive="active"> Dashboard</a>
+              </li>
             </ul>
           </li>
           <li nz-submenu nzTitle="Team" nzIcon="team">

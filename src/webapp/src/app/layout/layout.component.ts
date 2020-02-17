@@ -7,4 +7,28 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
   isCollapsed = false;
+  navitationSubmenus: NavitationSubmenu[] = [
+    {
+      title: 'Mantenimientos',
+      icon: 'setting',
+      items:
+      [
+        { title: 'Languages', url: '/languages' },
+        { title: 'Risk Levels', url: '/risk_levels'},
+        { title: 'Skills', url: '/skills'},
+        { title: 'Institutions', url: '/institutions'}
+      ]
+    }
+  ];
+}
+
+export interface NavitationSubmenu {
+  title: string;
+  icon: string;
+  items: NavigationItem[] | null;
+}
+
+export interface NavigationItem {
+  title: string;
+  url: string;
 }

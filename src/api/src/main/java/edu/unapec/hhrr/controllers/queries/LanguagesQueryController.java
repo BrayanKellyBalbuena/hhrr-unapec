@@ -2,7 +2,7 @@ package edu.unapec.hhrr.controllers.queries;
 
 import edu.unapec.hhrr.core.entities.Language;
 import edu.unapec.hhrr.infrastructure.dtos.queries.PageRequestDto;
-import edu.unapec.hhrr.infrastructure.dtos.queries.LanguagueQueryDto;
+import edu.unapec.hhrr.infrastructure.dtos.queries.language.LanguagueQueryDto;
 import edu.unapec.hhrr.infrastructure.enums.CatalogSeachField;
 import edu.unapec.hhrr.infrastructure.services.queries.LanguageQueryService;
 import io.swagger.annotations.Api;

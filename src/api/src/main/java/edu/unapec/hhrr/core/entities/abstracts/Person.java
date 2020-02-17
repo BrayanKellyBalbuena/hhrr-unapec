@@ -13,5 +13,5 @@ public abstract class Person<ID extends Serializable> extends AuditableEntity<ID
     protected String lastName;
 
     @Column(nullable = false)
-    protected int Age;
+    protected int age;
 }
