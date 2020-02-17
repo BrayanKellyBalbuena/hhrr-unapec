@@ -4,6 +4,7 @@ import { AlertComponent } from '../../../../shared/alert/alert.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RiskLevelCreateCommand } from '../shared/risk-level-create-command';
 import { RiskLevelCommandService } from '../shared/risk-level-command.service';
+import { MessageTitle } from '../../../core/enums/message-title.enum';
 
 @Component({
   selector: 'app-risk-level-create',
@@ -37,8 +38,9 @@ export class RiskLevelCreateComponent implements OnInit {
       this.serviceCommand.create(this.tempRiskLevel)
       .subscribe(result => {
         this.showAlert = true;
-        this.alert.success('Success');
+        this.alert.success(MessageTitle.SUCCESS);
         this.resetTempRiskLevel();
+        form.reset();
         this.toggleIsOkLoading();
         this.createCompleted.emit(true);
       },
@@ -56,10 +58,10 @@ export class RiskLevelCreateComponent implements OnInit {
   }
 
   resetTempRiskLevel() {
-    this.tempRiskLevel = {name: null, description: null};
+    this.tempRiskLevel = {name: '', description: ''};
   }
 
-  handleCancel(): void {
+  handleCancel() {
     this.isVisible = false;
   }
 

@@ -35,10 +35,12 @@ export class InstitutionCreateComponent implements OnInit {
     if (!form.invalid) {
       this.toggleIsOkLoading();
       this.serviceCommand.create(this.tempInstitution)
-      .subscribe(result => {
+      .subscribe(() => {
         this.showAlert = true;
+
         this.alert.success('Success');
         this.resetTempInstitution();
+        form.reset();
         this.toggleIsOkLoading();
         this.createCompleted.emit(true);
       },
@@ -47,7 +49,7 @@ export class InstitutionCreateComponent implements OnInit {
 
           this.alert.error(errResponse.error['error'], errResponse.error['message']);
           this.toggleIsOkLoading();
-        });
+      });
     }
   }
 

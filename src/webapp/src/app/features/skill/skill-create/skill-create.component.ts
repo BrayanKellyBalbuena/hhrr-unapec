@@ -4,6 +4,7 @@ import { AlertComponent } from '../../../../shared/alert/alert.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SkillCreateCommand } from '../shared/skill-create-command';
 import { SkillCommandService } from '../shared/skill-command.service';
+import { MessageTitle } from '../../../core/enums/message-title.enum';
 
 @Component({
   selector: 'app-skill-create',
@@ -35,10 +36,11 @@ export class SkillCreateComponent implements OnInit {
     if (!form.invalid) {
       this.toggleIsOkLoading();
       this.serviceCommand.create(this.tempSkill)
-      .subscribe(result => {
+      .subscribe(() => {
         this.showAlert = true;
-        this.alert.success('Success');
+        this.alert.success(MessageTitle.SUCCESS);
         this.resetTempSkill();
+        form.reset();
         this.toggleIsOkLoading();
         this.createCompleted.emit(true);
       },

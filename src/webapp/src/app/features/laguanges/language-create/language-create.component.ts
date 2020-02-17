@@ -41,6 +41,7 @@ export class LanguageCreateComponent implements OnInit {
         this.resetTempLanguage();
         this.toggleIsOkLoading();
         this.createCompleted.emit(true);
+        form.reset();
       },
         (errResponse: HttpErrorResponse) => {
           this.showAlert = true;
@@ -56,7 +57,7 @@ export class LanguageCreateComponent implements OnInit {
   }
 
   resetTempLanguage() {
-    this.tempLanguage = {name: null, description: null};
+    this.tempLanguage = {name: ' ', description: ''};
   }
 
   handleCancel(): void {
