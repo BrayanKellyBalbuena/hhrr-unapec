@@ -27,6 +27,7 @@
     <br />
   </div>
 </div>
+<nz-divider></nz-divider>
 <nz-table #ajaxTable nzShowSizeChanger [nzFrontPagination]="false" [nzData]="listOfData" [nzLoading]="loading"
   [nzTotal]="totalPage" [(nzPageIndex)]="pageRequest.pageNumber" [(nzPageSize)]="pageRequest.pageSize"
   (nzPageIndexChange)="searchData()" (nzPageSizeChange)="searchData(true)">
