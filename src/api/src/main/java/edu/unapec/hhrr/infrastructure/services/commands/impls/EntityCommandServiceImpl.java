@@ -2,7 +2,7 @@ package edu.unapec.hhrr.infrastructure.services.commands.impls;
 
 import edu.unapec.hhrr.core.entities.abstracts.AuditableEntity;
 import edu.unapec.hhrr.infrastructure.exceptions.ResourceNotFoundException;
-import edu.unapec.hhrr.infrastructure.repositories.commands.EntityCommnadRepository;
+import edu.unapec.hhrr.infrastructure.repositories.commands.EntityCommandRepository;
 import edu.unapec.hhrr.infrastructure.services.commands.EntityCommandService;
 
 import java.io.Serializable;
@@ -12,9 +12,9 @@ public abstract class EntityCommandServiceImpl<TEntity extends AuditableEntity, 
 
     private static final  String RESOURCE_NOT_FOUND = "RESOURCE_NOT_FOUND";
     private static final  String ENTITY_NULL_MESSAGE = " is null";
-    private EntityCommnadRepository<TEntity, ID> repository;
+    private EntityCommandRepository<TEntity, ID> repository;
 
-    public EntityCommandServiceImpl(EntityCommnadRepository<TEntity, ID> repository) {
+    public EntityCommandServiceImpl(EntityCommandRepository<TEntity, ID> repository) {
         this.repository = repository;
     }
     @Override

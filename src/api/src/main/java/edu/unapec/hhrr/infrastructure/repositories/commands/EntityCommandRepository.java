@@ -5,6 +5,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.io.Serializable;
 
-public interface EntityCommnadRepository<TEntity extends AuditableEntity, ID extends Serializable>
+public interface EntityCommandRepository<TEntity extends AuditableEntity, ID extends Serializable>
         extends PagingAndSortingRepository<TEntity, ID> {
 }

@@ -20,7 +20,7 @@ public class Training extends Catalog<Long> {
     private LocalDate dateTo;
 
     @Column(name = "institution_id", nullable = false)
-    private Long InstitutionId;
+    private Long institutionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "institution_id", foreignKey = @ForeignKey(name = "fk_trainings_institution"),
