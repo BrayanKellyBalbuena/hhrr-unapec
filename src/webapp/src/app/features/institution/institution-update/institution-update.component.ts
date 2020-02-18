@@ -18,12 +18,13 @@ export class InstitutionUpdateComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
   modalTitle = 'Update Risk level';
-  @Input() tempInstitution: InstitutionUpdateCommand = {id: 0, name: '', description: ''};
+  @Input() tempInstitution: InstitutionUpdateCommand = {id: 0, name: '', description: '', version: 0};
   @Output() OnCreated = new EventEmitter<boolean>();
   @Input() show = false;
   @ViewChild(AlertComponent, {static: false}) alert: AlertComponent;
   @Output() updateCompleted = new EventEmitter<boolean>();
   showAlert = false;
+  formSubmitted = false;
 
   constructor(private serviceCommand: InstitutionCommandService) { }
 
@@ -37,7 +38,9 @@ export class InstitutionUpdateComponent implements OnInit {
   }
 
   handleOk(form: NgForm ) {
-    if (!form.invalid) {
+    this.toggleSubmit();
+
+    if (form.valid) {
       this.isOkLoading = true;
 
       this.serviceCommand.update(this.tempInstitution)
@@ -57,6 +60,8 @@ export class InstitutionUpdateComponent implements OnInit {
           this.alert.error(errResponse.error['error'], errResponse.error['message']);
           this.toggleIsOkLoading();
         });
+    } else {
+      this.alert.warn('Complete all required values');
     }
   }
 
@@ -65,12 +70,16 @@ export class InstitutionUpdateComponent implements OnInit {
   }
 
   resetTempInstitution() {
-    this.tempInstitution = {id: 0, name: null, description: null};
+    this.tempInstitution = {id: 0, name: null, description: null,  version: 0};
   }
 
   handleCancel(): void {
     this.isVisible = false;
     this.showAlert = false;
+  }
+
+  toggleSubmit() {
+    this.formSubmitted = !this.formSubmitted;
   }
 
 }

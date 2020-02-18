@@ -25,23 +25,4 @@ public class LanguagesQueryController extends CatalogQueryController<Language, L
        super(queryService,Language.class, LanguagueQueryDto.class, mapper);
        this.languageQueryService = queryService;
    }
-
-    @Override
-    public Page<LanguagueQueryDto> seachBy(CatalogSeachField searchBy, String seachCriteria,
-                                           PageRequestDto pageRequest) {
-
-       if(searchBy == CatalogSeachField.NAME)
-           return this.languageQueryService.findByName(seachCriteria,
-                   PageRequest.of(pageRequest.getPageNumber() - 1, pageRequest.getPageSize(), Sort.by(pageRequest.getSortDirection(),
-                           "name") ))
-                   .map(e -> mapper.map(e, dtoClass));
-       else if (searchBy == CatalogSeachField.DESCRIPTION) {
-           return this.languageQueryService.findByDescription(seachCriteria,
-                   PageRequest.of(pageRequest.getPageNumber() - 1, pageRequest.getPageSize(),
-                           Sort.by(pageRequest.getSortDirection() , "description") ))
-                   .map(e -> mapper.map(e, dtoClass));
-       } else  {
-           throw new IllegalArgumentException(searchBy.name());
-       }
-    }
 }

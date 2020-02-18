@@ -18,7 +18,7 @@ export class SkillUpdateComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
   modalTitle = 'Update Risk level';
-  @Input() tempSkill: SkillUpdateCommand = {id: 0, name: '', description: ''};
+  @Input() tempSkill = new  SkillUpdateCommand();
   @Output() OnCreated = new EventEmitter<boolean>();
   @Input() show = false;
   @ViewChild(AlertComponent, {static: false}) alert: AlertComponent;
@@ -65,7 +65,10 @@ export class SkillUpdateComponent implements OnInit {
   }
 
   resetTempSkill() {
-    this.tempSkill = {id: 0, name: null, description: null};
+    this.tempSkill.id = 0,
+    this.tempSkill.name = '',
+    this.tempSkill.description = '';
+    this.tempSkill.version = 0;
   }
 
   handleCancel(): void {

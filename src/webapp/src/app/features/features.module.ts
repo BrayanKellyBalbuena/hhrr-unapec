@@ -5,6 +5,7 @@ import { LaguangesModule } from './laguanges/laguanges.module';
 import { RiskLevelModule } from './risk-level/risk-label.module';
 import { SkillModule } from './skill/skill.module';
 import { InstitutionModule } from './institution/institution.module';
+import { JobModule } from './jobs/job.module';
 
 
 @NgModule({
@@ -14,14 +15,16 @@ import { InstitutionModule } from './institution/institution.module';
     LaguangesModule,
     RiskLevelModule,
     SkillModule,
-    InstitutionModule
+    InstitutionModule,
+    JobModule,
   ],
   declarations: [],
   exports: [
     LaguangesModule,
     RiskLevelModule,
     SkillModule,
-    InstitutionModule
+    InstitutionModule,
+    JobModule,
   ]
 })
 export class FeaturesModule { }

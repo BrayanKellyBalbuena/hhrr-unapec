@@ -7,11 +7,13 @@
 >
 <app-alert [showAlert]=showAlert></app-alert>
 
-<form nz-form #form>
+<form nz-form #form="ngForm" novalidate>
   <nz-form-item>
     <nz-form-label [nzSpan]="5">Name</nz-form-label>
     <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Input is required and minlength is 4">
-      <input nz-input [(ngModel)]="tempInstitution.name" name="name" required minlength="4"/>
+      <input nz-input [(ngModel)]="tempInstitution.name" #name="ngModel" name="name"
+      [class.has-error]="formSubmitted && name.invalid"
+       name="name" required minlength="4"/>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>

@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface RiskLevelQueryRepository extends EntityQueryRepository<RiskLevel, Long> {
     Page<RiskLevel> findByNameContains(String name, Pageable pageable);
-    Page<RiskLevel> findByDescriptionContains(String name, Pageable pageable);
+    Page<RiskLevel> findByDescriptionContains(String description, Pageable pageable);
 }

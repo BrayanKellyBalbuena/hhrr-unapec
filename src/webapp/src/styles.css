@@ -39,3 +39,7 @@
       nz-footer {
         text-align: center;
       }
+
+      .has-error{
+        border-color: red;
+      }

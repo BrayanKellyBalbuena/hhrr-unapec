@@ -10,4 +10,6 @@ public abstract class CatalogQueryDto<ID> extends AuditableQueryDto<ID> {
     protected String name;
     @NotNull
     protected  String description;
+
+
 }

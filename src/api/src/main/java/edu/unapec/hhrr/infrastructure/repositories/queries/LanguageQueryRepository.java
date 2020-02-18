@@ -8,5 +8,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface LanguageQueryRepository extends EntityQueryRepository<Language, Long> {
    Page<Language> findByNameContains(String name, Pageable pageable);
-   Page<Language> findByDescriptionContains(String name, Pageable pageable);
+   Page<Language> findByDescriptionContains(String description, Pageable pageable);
 }

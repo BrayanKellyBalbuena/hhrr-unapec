@@ -18,7 +18,7 @@ export class LanguageUpdateComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
   modalTitle = 'Update language';
-  @Input() tempLanguage: LanguageUpdateCommand = {id: 0, name: '', description: ''};
+  @Input() tempLanguage: LanguageUpdateCommand = {id: 0, name: '', description: '', version: 0};
   @Output() OnCreated = new EventEmitter<boolean>();
   @Input() show = false;
   @ViewChild(AlertComponent, {static: false}) alert: AlertComponent;
@@ -65,7 +65,7 @@ export class LanguageUpdateComponent implements OnInit {
   }
 
   resetTempLanguage() {
-    this.tempLanguage = {id: 0, name: null, description: null};
+    this.tempLanguage = {id: 0, name: null, description: null,  version: 0};
   }
 
   handleCancel(): void {

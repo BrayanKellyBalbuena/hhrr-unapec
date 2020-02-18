@@ -20,6 +20,7 @@ export class InstitutionCreateComponent implements OnInit {
   @ViewChild(AlertComponent, {static: false}) alert: AlertComponent;
   @Output() createCompleted = new EventEmitter<boolean>();
   showAlert = false;
+  formSubmitted = false;
 
   constructor(private serviceCommand: InstitutionCommandService) { }
 
@@ -32,7 +33,9 @@ export class InstitutionCreateComponent implements OnInit {
   }
 
   handleOk(form: NgForm ) {
-    if (!form.invalid) {
+    this.toggleSubmit();
+
+    if (form.valid) {
       this.toggleIsOkLoading();
       this.serviceCommand.create(this.tempInstitution)
       .subscribe(() => {
@@ -42,6 +45,7 @@ export class InstitutionCreateComponent implements OnInit {
         this.resetTempInstitution();
         form.reset();
         this.toggleIsOkLoading();
+        this.toggleSubmit();
         this.createCompleted.emit(true);
       },
         (errResponse: HttpErrorResponse) => {
@@ -50,6 +54,8 @@ export class InstitutionCreateComponent implements OnInit {
           this.alert.error(errResponse.error['error'], errResponse.error['message']);
           this.toggleIsOkLoading();
       });
+    } else {
+      this.alert.warn('Complete all required values');
     }
   }
 
@@ -63,6 +69,10 @@ export class InstitutionCreateComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  toggleSubmit() {
+    this.formSubmitted = !this.formSubmitted;
   }
 
 }

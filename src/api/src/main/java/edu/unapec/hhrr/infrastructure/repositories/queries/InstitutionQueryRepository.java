@@ -8,5 +8,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface InstitutionQueryRepository extends EntityQueryRepository<Institution, Long> {
     Page<Institution> findByNameContains(String name, Pageable pageable);
-    Page<Institution> findByDescriptionContains(String name, Pageable pageable);
+    Page<Institution> findByDescriptionContains(String description, Pageable pageable);
 }

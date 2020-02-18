@@ -18,7 +18,7 @@ export class RiskLevelUpdateComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
   modalTitle = 'Update Risk level';
-  @Input() tempRiskLevel: RiskLevelUpdateCommand = {id: 0, name: '', description: ''};
+  @Input() tempRiskLevel: RiskLevelUpdateCommand = {id: 0, name: '', description: '',  version: 0};
   @Output() OnCreated = new EventEmitter<boolean>();
   @Input() show = false;
   @ViewChild(AlertComponent, {static: false}) alert: AlertComponent;
@@ -65,7 +65,7 @@ export class RiskLevelUpdateComponent implements OnInit {
   }
 
   resetTempRiskLevel() {
-    this.tempRiskLevel = {id: 0, name: null, description: null};
+    this.tempRiskLevel = {id: 0, name: null, description: null,  version: 0};
   }
 
   handleCancel(): void {

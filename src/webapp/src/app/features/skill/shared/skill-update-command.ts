@@ -1,4 +1,8 @@
 import { CatalogUpdateCommand } from '../../../core/models/catalog-update-command';
 
-export interface SkillUpdateCommand extends CatalogUpdateCommand{
+export class SkillUpdateCommand implements CatalogUpdateCommand {
+  name: string;  description: string;
+  version: number;
+  id: number;
+
 }

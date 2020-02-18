@@ -18,6 +18,13 @@ export class LayoutComponent {
         { title: 'Skills', url: '/skills'},
         { title: 'Institutions', url: '/institutions'}
       ]
+    },
+    {
+      title: 'Jobs',
+      icon: 'file-search',
+      items: [
+        { title: 'Post jobs', url: '/jobs' },
+      ]
     }
   ];
 }

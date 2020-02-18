@@ -1,6 +1,7 @@
 import { BaseQuery } from './base-query';
+import { BaseModel } from './base-model';
 
-export interface PageResponse<TQuery extends BaseQuery> {
+export interface PageResponse<TQuery extends BaseModel> {
   content: TQuery[];
   totalElements: number;
   last: boolean;

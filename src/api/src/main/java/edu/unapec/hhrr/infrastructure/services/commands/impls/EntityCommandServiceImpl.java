@@ -4,7 +4,6 @@ import edu.unapec.hhrr.core.entities.abstracts.AuditableEntity;
 import edu.unapec.hhrr.infrastructure.exceptions.ResourceNotFoundException;
 import edu.unapec.hhrr.infrastructure.repositories.commands.EntityCommnadRepository;
 import edu.unapec.hhrr.infrastructure.services.commands.EntityCommandService;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.io.Serializable;
 
@@ -57,6 +56,6 @@ public abstract class EntityCommandServiceImpl<TEntity extends AuditableEntity, 
 
     @Override
     public void update(TEntity entity) {
-        repository.save(entity);
+        this.save(entity);
     }
 }

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { PageRequest } from '../models/page-request';
 import { CatalogSeachField } from '../enums/catalog-seach-field.enum';
 import { PageResponse } from '../models/page-response';
+import { CatalogWithIdAndNameQuery } from '../models/CatalogWithIdAndNameQuery';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,16 @@ export abstract class CatalogQueryService<TQuery extends CatalogQuery> extends B
 
     return this.httpClient.get<PageResponse<TQuery>>(this.endPoint + 'searchBy/', {headers: this.headers,
     params: requesParams} );
+  }
+
+ public getWithIdName(pageRequest: PageRequest, endPoint: string): Observable<PageResponse<CatalogWithIdAndNameQuery>> {
+    const requesParams = new HttpParams()
+    .set('pageNumber', pageRequest.pageNumber.toString())
+    .set('pageSize', pageRequest.pageSize.toString())
+    .set('sortDirection', pageRequest.sortDirection)
+    .set('sortField', pageRequest.sortField);
+
+    return this.httpClient.get<PageResponse<CatalogWithIdAndNameQuery>>(endPoint,
+      { headers: this.headers, params: requesParams });
   }
 }

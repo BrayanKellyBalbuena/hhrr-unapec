@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
 @RequestMapping("/api/risk_levels")
-@Api(tags = "RiskLevels")
+@Api(tags = "Risk Levels")
 public class RiskLevelsCommandController  extends EntityCommandController<RiskLevel, Long, RiskLevelCreateCommandDto,
         RiskLevelUpdateCommandDto> {
     public RiskLevelsCommandController(@Autowired RiskLevelCommandService commandService, ModelMapper mapper) {

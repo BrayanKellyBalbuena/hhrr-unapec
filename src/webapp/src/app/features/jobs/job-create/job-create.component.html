@@ -1,0 +1,76 @@
+<button nz-button  class="green-6" (click)="showModal()">
+  <i nz-icon nzType="plus"></i>
+  Create new
+</button>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk(form)"
+  [nzOkLoading]="isOkLoading"
+>
+<app-alert [showAlert]=showAlert></app-alert>
+
+<form nz-form name="form" #form="ngForm" novalidate>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzSpan]="6">Name</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Input is required and minlength is 4">
+      <input nz-input [(ngModel)]="tempJob.name" name="name" #name = "ngModel" required minlength="4"
+      [class.has-error]="formSubmitted && name.invalid"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzSpan]="6">Description</nz-form-label>
+    <nz-form-control  nzHasFeedback [nzSpan]="12" nzErrorTip="Required">
+      <textarea nz-input [(ngModel)]="tempJob.description" name="description" #desc="ngModel" required
+      [class.has-error]="formSubmitted && desc.invalid"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzSpan]="6">Max Salary</nz-form-label>
+    <nz-input-number name="maximunSalary" #minSalary = "ngModel"
+    [(ngModel)]="tempJob.maximunSalary"
+    [nzMin]="1"
+    [nzStep]="0.1"
+    [nzFormatter]="concurrencyFormatter.formatterDollar"
+    [nzParser]="concurrencyParser.parserDollar"
+    [nzPlaceHolder]="'Max salary'"
+
+    [class.has-error]="formSubmitted && minSalary.invalid"
+    required></nz-input-number>
+
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label  [nzSm]="6" nzHasFeedback [nzXs]="24" nzRequired [nzSpan]="6">Minimun Salary</nz-form-label>
+    <nz-input-number nzHasFeedback required nzErrorTip="Input is required and minlength is 4" name="minimunSalary"
+    [(ngModel)]="tempJob.mininumSalary"
+    #maxSalary = "ngModel"
+    [nzMin]="1"
+    [nzStep]="0.1"
+    [nzFormatter]="concurrencyFormatter.formatterDollar"
+    [nzParser]="concurrencyParser.parserDollar"
+    [nzPlaceHolder]="'Minimun salary'"
+    required
+    [class.has-error]="formSubmitted && maxSalary.invalid"
+    required></nz-input-number>
+
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzSpan]="6">Risk level</nz-form-label>
+  <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Require">
+    <nz-select name="riskLevelId"
+    #riskLevel = "ngModel"
+    nzShowSearch nzAllowClear
+    [class.has-error]="formSubmitted && riskLevel.invalid"
+    nzPlaceHolder="Select a skill"
+     [(ngModel)] = "tempJob.riskLevelId"required>
+      <nz-option *ngFor = "let skill of skills" [nzValue] = "skill.id" [nzLabel] = "skill.name"></nz-option>
+    </nz-select>
+  </nz-form-control>
+  </nz-form-item>
+</form>
+</nz-modal>
