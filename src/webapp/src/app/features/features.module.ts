@@ -6,6 +6,7 @@ import { RiskLevelModule } from './risk-level/risk-label.module';
 import { SkillModule } from './skill/skill.module';
 import { InstitutionModule } from './institution/institution.module';
 import { JobModule } from './jobs/job.module';
+import { TrainingModule } from './training/training.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { JobModule } from './jobs/job.module';
     SkillModule,
     InstitutionModule,
     JobModule,
+    TrainingModule,
   ],
   declarations: [],
   exports: [
@@ -25,6 +27,7 @@ import { JobModule } from './jobs/job.module';
     SkillModule,
     InstitutionModule,
     JobModule,
+    TrainingModule
   ]
 })
 export class FeaturesModule { }

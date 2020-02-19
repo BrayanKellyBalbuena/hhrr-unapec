@@ -6,6 +6,7 @@ import { RiskLevelListComponent } from '../features/risk-level/risk-level-list/r
 import { SkillListComponent } from '../features/skill/skill-list/skill-list.component';
 import { InstitutionListComponent } from '../features/institution/institution-list/institution-list.component';
 import { JobListComponent } from '../features/jobs/job-list/job-list.component';
+import { TrainingListComponent } from '../features/training/training-list/training-list.component';
 
 
 const routes: Routes = [{
@@ -14,7 +15,8 @@ const routes: Routes = [{
     { path: 'risk_levels', component: RiskLevelListComponent },
     { path: 'skills', component: SkillListComponent },
     { path: 'institutions', component: InstitutionListComponent },
-    { path: 'jobs', component: JobListComponent}
+    { path: 'jobs', component: JobListComponent},
+    { path: 'trainings', component: TrainingListComponent}
     // },
     // { path: 'balance', loadChildren: () => import(`./balance/balance.module`).then(m => m.BalanceModule) },
     // {

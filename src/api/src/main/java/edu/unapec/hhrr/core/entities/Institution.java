@@ -14,7 +14,7 @@ import java.util.Set;
 @Where(clause = "is_active=true")
 @Data
 public class Institution extends Catalog<Long> {
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "institution_id")
     private Set<Training> trainings = new HashSet<>();
 }

@@ -20,12 +20,17 @@ public abstract class EntityCommandServiceImpl<TEntity extends AuditableEntity, 
     @Override
     public void save(TEntity entity)
     {
-        if( entity != null) {
-            entity.setActive(true);
-            repository.save(entity);
-        } else {
-            throw new NullPointerException(entity.getClass().getSimpleName() + ENTITY_NULL_MESSAGE);
+        try {
+            if( entity != null) {
+                entity.setActive(true);
+                repository.save(entity);
+            } else {
+                throw new NullPointerException(entity.getClass().getSimpleName() + ENTITY_NULL_MESSAGE);
+            }
+        } catch (Exception ex) {
+            var r = 0;
         }
+
 
     }
 

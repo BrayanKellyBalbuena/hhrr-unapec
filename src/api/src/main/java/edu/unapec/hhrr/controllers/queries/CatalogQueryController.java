@@ -44,7 +44,4 @@ public abstract class CatalogQueryController<TEntity extends Catalog, TDto exten
             throw new IllegalArgumentException(searchBy.name());
         }
     }
-//    @GetMapping("/searchBy")
-//    public abstract Page<TDto> seachBy(@PathVariable CatalogSeachField searchBy, String seachCriteria,
-//                                       PageRequestDto pageRequest);
 }

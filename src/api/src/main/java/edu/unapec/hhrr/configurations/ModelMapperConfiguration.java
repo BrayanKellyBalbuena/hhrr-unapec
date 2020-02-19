@@ -1,9 +1,13 @@
 package edu.unapec.hhrr.configurations;
 
+import edu.unapec.hhrr.core.entities.Institution;
 import edu.unapec.hhrr.core.entities.Job;
 import edu.unapec.hhrr.core.entities.Skill;
+import edu.unapec.hhrr.core.entities.Training;
+import edu.unapec.hhrr.infrastructure.dtos.queries.institution.InstitutionQueryDto;
 import edu.unapec.hhrr.infrastructure.dtos.queries.job.JobQueryDto;
 import edu.unapec.hhrr.infrastructure.dtos.queries.skill.SkillWithIDAndNameQueryDto;
+import edu.unapec.hhrr.infrastructure.dtos.queries.traning.TrainingQueryDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.spi.MatchingStrategy;
@@ -21,8 +25,11 @@ public  class ModelMapperConfiguration {
         var mapper = new ModelMapper();
 
     mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        mapper.typeMap(Job.class, JobQueryDto.class)
-                .addMapping(src -> src.getRiskLevel().getName(), JobQueryDto::setRiskLevel);
+    mapper.typeMap(Job.class, JobQueryDto.class)
+            .addMapping(src -> src.getRiskLevel().getName(), JobQueryDto::setRiskLevel);
+
+    mapper.typeMap(Training.class, TrainingQueryDto.class)
+            .addMapping(src -> src.getInstitution().getName(), TrainingQueryDto::setInstitutionName);
 
         return mapper;
     }

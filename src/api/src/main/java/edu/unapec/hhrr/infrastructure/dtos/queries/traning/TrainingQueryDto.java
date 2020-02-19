@@ -16,4 +16,6 @@ public class TrainingQueryDto extends CatalogQueryDto<Long> {
 
     @NotNull(message = "Institution is required")
     private Long institutionId;
+
+    private String institutionName;
 }

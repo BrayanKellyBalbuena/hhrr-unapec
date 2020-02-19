@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping("trainings")
+@RequestMapping("/api/trainings")
 @Api(tags = "Trainings")
 public class TrainingQueryController extends CatalogQueryController<Training, TrainingQueryDto, Long> {
     private TrainingQueryService trainingQueryService;

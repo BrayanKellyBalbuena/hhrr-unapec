@@ -17,7 +17,9 @@ export const endPoints = {
   skills_with_id_name:  environment.host + environment.port + environment.api + 'skills/skill_with_id_name/',
   riskLevelWithIdAndName:  environment.host + environment.port + environment.api + 'risk_levels/risk_level_with_id_name/',
   institutions: environment.host + environment.port + environment.api + 'institutions/',
-  jobs: environment.host + environment.port + environment.api + 'jobs/'
+  institutionsWithIdAndName: environment.host + environment.port + environment.api + 'institutions/institutions_with_id_name',
+  jobs: environment.host + environment.port + environment.api + 'jobs/',
+  trainings: environment.host + environment.port + environment.api + 'trainings/'
 };
 
 /*

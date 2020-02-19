@@ -16,7 +16,8 @@ export class LayoutComponent {
         { title: 'Languages', url: '/languages' },
         { title: 'Risk Levels', url: '/risk_levels'},
         { title: 'Skills', url: '/skills'},
-        { title: 'Institutions', url: '/institutions'}
+        { title: 'Institutions', url: '/institutions'},
+        { title:  'Trainings', url: '/trainings'}
       ]
     },
     {

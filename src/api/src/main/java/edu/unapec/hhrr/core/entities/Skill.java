@@ -12,6 +12,6 @@ import java.util.Set;
         @Index(name = "uidx_skills_name", columnList = "name", unique = true)})
 @Where(clause = "is_active = true")
 public class Skill extends Catalog<Long> {
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "skills")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "skills")
     private Set<Candidate> candidates = new HashSet<>();
 }
