@@ -1,6 +1,8 @@
 package edu.unapec.hhrr.core.entities;
 
+import edu.unapec.hhrr.core.entities.abstracts.AdultPerson;
 import edu.unapec.hhrr.core.entities.abstracts.Person;
+import lombok.Data;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -12,24 +14,33 @@ import java.util.Set;
 @Table(name = "candidates", indexes = {@Index(name = "idx_candidates_isActive", columnList = "is_active"),
         @Index(name = "idx_candidates_first_name", columnList = "first_name"),
         @Index(name = "idx_candidates_last_name", columnList = "last_name")})
-public class Candidate extends Person<Long> {
+@Data
+public class Candidate extends AdultPerson<Long> {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "candidate")
     private Set<WorkExperience> workExperiences = new HashSet<>();
+
+    private Long userId;
+
+   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @JoinColumn(name = "userId", referencedColumnName = "id", insertable=false, updatable = false)
+    private User user;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
-    })
+    }, fetch = FetchType.LAZY)
     @JoinTable(name = "candidates_skills",
-            joinColumns = @JoinColumn(name = "candidate_id", foreignKey = @ForeignKey(name = "fk_cantidates_skills_candidates")),
-            inverseJoinColumns = @JoinColumn(name = "skill_id", foreignKey = @ForeignKey(name = "fk_cantidates_skills_skills"))
+            joinColumns = @JoinColumn(name = "candidate_id",
+                    foreignKey = @ForeignKey(name = "fk_cantidates_skills_candidates")),
+            inverseJoinColumns = @JoinColumn(name = "skill_id",
+                    foreignKey = @ForeignKey(name = "fk_cantidates_skills_skills"))
     )
     private Set<Skill> skills = new HashSet<>();
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
-    })
+    },fetch = FetchType.LAZY)
     @JoinTable(name = "cantidates_languagues",
             joinColumns = @JoinColumn(name = "candidate_id", foreignKey = @ForeignKey(name = "fk_cantidates_languagues_candidate")),
             inverseJoinColumns = @JoinColumn(name = "language_id", foreignKey = @ForeignKey(name = "fk_cantidates_languagues_languages")))

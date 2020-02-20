@@ -1,5 +1,6 @@
 package edu.unapec.hhrr.core.entities;
 
+import edu.unapec.hhrr.core.entities.abstracts.AdultPerson;
 import edu.unapec.hhrr.core.entities.abstracts.AuditableEntity;
 import org.hibernate.annotations.Where;
 
@@ -11,16 +12,7 @@ import java.time.LocalDate;
         @Index(name = "idx_employees_first_name", columnList = "first_name"),
         @Index(name = "idx_employees_last_name", columnList = "last_name")})
 @Where(clause = "is_active = true")
-public class Employee extends AuditableEntity<Long> {
-
-    @Column(name = "identity_card", nullable = false)
-    private Integer identityCard;
-
-    @Column(name = "first_name", nullable = false, length = 64)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false, length = 128)
-    private String lastName;
+public class Employee extends AdultPerson<Long> {
 
     private LocalDate hireDate;
     @Column(name = "department_id", nullable = false)

@@ -33,7 +33,7 @@ export class JobListComponent implements OnInit, AfterViewInit {
     { value: 'name', displayName: 'Name' },
     { value: 'mininumSalary', displayName: 'Mininum Salary' },
     { value: 'maximunSalary', displayName: 'Maximun Salary' },
-    { value: 'description', displayName: 'Description' }
+    // { value: 'description', displayName: 'Description' }
   ];
 
   filtersProperties = [
