@@ -12,12 +12,20 @@
       }
 
       .logo {
-        height: 32px;
-        background: rgba(255, 255, 255, 0.2);
-        margin: 16px;
+        width: 140px;
+        height: 31px;
+        line-height: 30px;
+        background: rgba(214, 207, 207, 0.2);
+        margin-left: 0px;
+        float: left;
+        color: white;
+        text-align: center;
       }
 
-      nz-header {
+
+
+      .siderButtom
+      {
         background: #fff;
         padding: 0;
       }
@@ -45,4 +53,7 @@
 
       .full-heigth {
         height: 100%;
+      }
+      nz-footer {
+        margin-top: 15%;
       }
