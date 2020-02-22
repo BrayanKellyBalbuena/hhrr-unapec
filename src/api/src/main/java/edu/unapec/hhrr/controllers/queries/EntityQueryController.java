@@ -7,9 +7,11 @@ import edu.unapec.hhrr.infrastructure.exceptions.ResourceNotFoundException;
 import edu.unapec.hhrr.infrastructure.services.queries.EntityQueryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 public abstract class EntityQueryController<TEntity extends AuditableEntity , TDto extends BaseQueryDto, ID> {
 
     protected EntityQueryService<TEntity, ID> queryService;

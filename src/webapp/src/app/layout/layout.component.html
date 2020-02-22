@@ -14,26 +14,9 @@
                 <a [routerLink]= "item.url">{{item.title}}</a>
               </li>
             </ul>
-          </li>
-          <li nz-submenu nzTitle="User" nzIcon="user">
-            <ul>
-              <li nz-menu-item>Tom</li>
-              <li nz-menu-item>Bill</li>
-              <li nz-menu-item>Alex</li>
-              <li nz-menu-item>
-                <a [routerLink]="'/languages'" routerLinkActive="active"> Dashboard</a>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Team" nzIcon="team">
-            <ul>
-              <li nz-menu-item>Team 1</li>
-              <li nz-menu-item>Team 2</li>
-            </ul>
-          </li>
-          <li nz-menu-item>
+          <li nz-menu-item (click)="logout()">
             <i nz-icon nzType="file"></i>
-            <span>File</span>
+            <span>Logout</span>
           </li>
         </ul>
       </nz-sider>

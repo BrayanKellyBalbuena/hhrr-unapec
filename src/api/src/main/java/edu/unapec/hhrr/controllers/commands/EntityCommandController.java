@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 public abstract class EntityCommandController<TEntity extends AuditableEntity, ID, TCreateCommandDto,
         TUpdateCommandDto extends EntityUpdateCommandDto> {
     protected final Class<TCreateCommandDto> createCommandDtoClass;

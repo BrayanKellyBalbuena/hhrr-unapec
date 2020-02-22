@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   host: 'http://localhost:',
   port: '8080',
-  api: '/api/'
+  api: '/api/',
+  auth: 'auth/'
 
 };
 
@@ -19,7 +20,9 @@ export const endPoints = {
   institutions: environment.host + environment.port + environment.api + 'institutions/',
   institutionsWithIdAndName: environment.host + environment.port + environment.api + 'institutions/institutions_with_id_name',
   jobs: environment.host + environment.port + environment.api + 'jobs/',
-  trainings: environment.host + environment.port + environment.api + 'trainings/'
+  trainings: environment.host + environment.port + environment.api + 'trainings/',
+  signin: environment.host + environment.port + environment.api + environment.auth + 'signin',
+  candidates: environment.host + environment.port + environment.api  + 'candidates/'
 };
 
 /*

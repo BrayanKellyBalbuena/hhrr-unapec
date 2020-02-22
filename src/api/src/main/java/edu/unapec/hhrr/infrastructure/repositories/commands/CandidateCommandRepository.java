@@ -1,4 +1,7 @@
 package edu.unapec.hhrr.infrastructure.repositories.commands;
 
-public class CandidateCommandRepository {
+import edu.unapec.hhrr.core.entities.Candidate;
+
+public interface CandidateCommandRepository extends  EntityCommandRepository<Candidate, Long> {
+
 }

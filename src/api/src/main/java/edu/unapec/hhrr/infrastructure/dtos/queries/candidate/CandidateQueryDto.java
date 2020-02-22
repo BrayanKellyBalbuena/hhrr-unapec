@@ -1,4 +1,13 @@
-package edu.unapec.hhrr.infrastructure.dtos.queries;
+package edu.unapec.hhrr.infrastructure.dtos.queries.candidate;
 
-public class CandidateQueryDto {
+import edu.unapec.hhrr.infrastructure.dtos.abstracts.AuditableQueryDto;
+import lombok.Data;
+
+@Data
+public class CandidateQueryDto extends AuditableQueryDto<Long> {
+    private short identityCard;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private short age;
 }

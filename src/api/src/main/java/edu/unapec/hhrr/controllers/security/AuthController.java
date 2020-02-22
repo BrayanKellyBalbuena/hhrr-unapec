@@ -60,6 +60,7 @@ public class AuthController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(new JwtQueryDto(jwt,
+                jwtUtils.expirationDate,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),

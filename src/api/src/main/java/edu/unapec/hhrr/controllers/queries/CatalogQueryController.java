@@ -12,9 +12,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 public abstract class CatalogQueryController<TEntity extends Catalog, TDto extends CatalogQueryDto, ID>
         extends EntityQueryController<TEntity, TDto, ID> {
 
@@ -25,6 +27,7 @@ public abstract class CatalogQueryController<TEntity extends Catalog, TDto exten
         super(queryService, entityClass, dtoClass, mapper);
         this.catalogQueryService = queryService;
     }
+
 
     @GetMapping("/searchBy")
     public Page<TDto> seachBy(CatalogSeachField searchBy, String seachCriteria,

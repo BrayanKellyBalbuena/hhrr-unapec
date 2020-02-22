@@ -1,5 +1,6 @@
 package edu.unapec.hhrr.infrastructure.security.jwt;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import edu.unapec.hhrr.infrastructure.security.services.UserDetailsImpl;
@@ -21,14 +22,17 @@ public class JwtUtils {
     @Value("${bezkoder.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
+    public Date expirationDate;
+
     public String generateJwtToken(Authentication authentication) {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+        expirationDate = new Date((new Date()).getTime() + jwtExpirationMs);
 
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }

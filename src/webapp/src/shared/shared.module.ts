@@ -7,6 +7,9 @@ import { LanguageCommandService } from '../app/features/laguanges/shared/languag
 import { AlertComponent } from './alert/alert.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthGuardService } from './services/auth-guard.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     BrowserAnimationsModule,
     NgZorroAntdModule,
     NzIconModule,
@@ -23,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   exports: [
     BrowserModule,
+    RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
     NgZorroAntdModule,
@@ -31,7 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     AlertComponent
    ],
-    providers: [LanguageQueryService, LanguageCommandService]
+    providers: [LanguageQueryService, LanguageCommandService, AuthInterceptor, AuthGuardService]
 })
 export class SharedModule {
 

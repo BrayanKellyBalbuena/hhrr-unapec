@@ -1,10 +1,13 @@
 package edu.unapec.hhrr.core.entities.abstracts;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 @MappedSuperclass()
+@Data
 public abstract class Person<ID extends Serializable> extends AuditableEntity<ID> {
     @Column(name = "first_name", nullable = false, length = 64)
     protected String firstName;
@@ -13,5 +16,5 @@ public abstract class Person<ID extends Serializable> extends AuditableEntity<ID
     protected String lastName;
 
     @Column(nullable = false)
-    protected int age;
+    protected short age;
 }

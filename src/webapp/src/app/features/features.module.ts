@@ -7,7 +7,8 @@ import { SkillModule } from './skill/skill.module';
 import { InstitutionModule } from './institution/institution.module';
 import { JobModule } from './jobs/job.module';
 import { TrainingModule } from './training/training.module';
-
+import { SecurityModule } from './security/security.module';
+import { CandidateModule } from './candidate/candidate.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,8 @@ import { TrainingModule } from './training/training.module';
     InstitutionModule,
     JobModule,
     TrainingModule,
+    SecurityModule,
+    CandidateModule,
   ],
   declarations: [],
   exports: [
@@ -27,7 +30,9 @@ import { TrainingModule } from './training/training.module';
     SkillModule,
     InstitutionModule,
     JobModule,
-    TrainingModule
+    TrainingModule,
+    SecurityModule,
+    CandidateModule,
   ]
 })
 export class FeaturesModule { }
