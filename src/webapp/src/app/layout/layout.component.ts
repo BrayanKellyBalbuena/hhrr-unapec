@@ -8,9 +8,10 @@ import { Role } from '../core/enums/Role.enum';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })
-export class LayoutComponent implements OnInit{
+export class LayoutComponent implements OnInit {
   isCollapsed = false;
   navitationSubmenus: NavitationSubmenu[] = [];
+  title = '';
 
   constructor(private authService: AuthenticationService) {
 
@@ -21,7 +22,7 @@ export class LayoutComponent implements OnInit{
   }
 
   setNavigationSubmenu() {
-
+    this.title = this.authService.getCurrentUser().username;
    if (this.authService.getCurrentUser().roles.findIndex(e => e === Role.USER) === -1) {
       this.navitationSubmenus  = [
         {
@@ -32,8 +33,7 @@ export class LayoutComponent implements OnInit{
             { title: 'Languages', url: '/languages' },
             { title: 'Risk Levels', url: '/risk_levels'},
             { title: 'Skills', url: '/skills'},
-            { title: 'Institutions', url: '/institutions'},
-            { title:  'Trainings', url: '/trainings'}
+            { title: 'Institutions', url: '/institutions'}
           ]
         },
         {
