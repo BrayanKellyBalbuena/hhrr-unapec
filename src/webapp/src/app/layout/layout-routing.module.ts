@@ -10,6 +10,8 @@ import { TrainingListComponent } from '../features/training/training-list/traini
 import { CandidateSkillListComponent } from '../features/candidate/candidate-skill-list/candidate-skill-list.component';
 import { CandidateJobSeachListComponent } from '../features/candidate/candidate-search-jobs/candidate-search-jobs.component';
 import { CandidateLanguageListComponent } from '../features/candidate/candidate-language-list/candidate-language-list.component';
+import { CandidateAppliedJobsListComponent } from '../features/candidate/candidate-applied-jobs/candidate-applied-jobs.component';
+import { CandidateTrainingListComponent } from '../features/candidate/candidate-trainings/candidate-training-list/candidate-training-list.component';
 
 
 const routes: Routes = [{
@@ -22,7 +24,9 @@ const routes: Routes = [{
     { path: 'trainings', component: TrainingListComponent},
     {path: 'candidate-skills', component: CandidateSkillListComponent},
     {path: 'candidate-jobs-seach', component: CandidateJobSeachListComponent},
-    {path: 'candidate-languages', component: CandidateLanguageListComponent}
+    {path: 'candidate-languages', component: CandidateLanguageListComponent},
+    {path: 'candidate-applied-jobs', component: CandidateAppliedJobsListComponent},
+    {path: 'candidate-trainings', component: CandidateTrainingListComponent}
     // },
     // { path: 'balance', loadChildren: () => import(`./balance/balance.module`).then(m => m.BalanceModule) },
     // {

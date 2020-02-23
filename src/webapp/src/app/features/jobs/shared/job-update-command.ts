@@ -9,5 +9,4 @@ export class  JobUpdateCommand implements CatalogUpdateCommand, Job {
   name: string;
   description: string;
   id: number;
-
 }

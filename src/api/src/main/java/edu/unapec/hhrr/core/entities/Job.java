@@ -36,4 +36,10 @@ public class Job extends Catalog<Long> {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "jobs")
     private Set<Candidate> candidates = new HashSet<>();
+
+    public Long getNumberOfCandidatesApply() {
+
+     return  new Long(candidates.size());
+
+    }
 }

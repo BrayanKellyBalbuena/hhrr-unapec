@@ -21,6 +21,7 @@ import java.util.Set;
         @Index(name = "idx_candidates_last_name", columnList = "last_name")})
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 public class Candidate extends AdultPerson<Long> {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "candidate")
     private Set<WorkExperience> workExperiences = new HashSet<>();
@@ -70,6 +71,10 @@ public class Candidate extends AdultPerson<Long> {
                     foreignKey = @ForeignKey(name = "fk_jobs_cantidates_jobs"))
     )
     private Set<Job> jobs = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "candidate_id")
+    private Set<Training> trainings = new HashSet<>();
 
     @Override()
     public String toString() {

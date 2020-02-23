@@ -21,4 +21,7 @@ public class TrainingUpdateCommandDto extends CatalogUpdateCommandDto<Long> {
 
     @NotNull(message = "Institution is required")
     private Long institutionId;
+
+    @NotNull(message = "Candidate is required")
+    private Long candidateId;
 }

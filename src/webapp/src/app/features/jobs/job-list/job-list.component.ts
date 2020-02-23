@@ -29,10 +29,11 @@ export class JobListComponent implements OnInit, AfterViewInit {
 
   sortProperties = [
     { value: 'id', displayName: 'Number' },
-    { value: 'riskLevel', displayName: 'Risk level'},
     { value: 'name', displayName: 'Name' },
+    { value: 'riskLevel', displayName: 'Risk level'},
     { value: 'mininumSalary', displayName: 'Mininum Salary' },
     { value: 'maximunSalary', displayName: 'Maximun Salary' },
+    {value: 'numberOfApplications', displayName: 'Number of Applications'}
     // { value: 'description', displayName: 'Description' }
   ];
 

@@ -11,8 +11,6 @@ const routes: Routes = [
     {path: '', component: LayoutComponent, canActivate: [AuthGuard]},
     {path: 'candidate-register', component: CandidateCreateComponent},
     {path: 'login', component: LoginComponent},
-    // { path: 'profile', component: ProfileComponent },
-    // { path: 'attendance', component: AttendanceComponent },
     { path: 'home', loadChildren: () => import(`./layout/layout.module`).then(m => m.LayoutModule) },
     { path: '', redirectTo: '', pathMatch: 'full' },
     // { path: '**', component: Page404Component },

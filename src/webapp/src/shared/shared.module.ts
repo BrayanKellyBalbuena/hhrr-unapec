@@ -10,10 +10,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RouterModule } from '@angular/router';
+import { JobDetailsComponent } from './components/job-details/job-details.component';
 
 @NgModule({
   declarations: [
-    AlertComponent
+    AlertComponent,
+    JobDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { RouterModule } from '@angular/router';
     NzIconModule,
     FormsModule,
     ReactiveFormsModule,
-    AlertComponent
+    AlertComponent,
+    JobDetailsComponent
    ],
     providers: [LanguageQueryService, LanguageCommandService, AuthInterceptor, AuthGuardService]
 })

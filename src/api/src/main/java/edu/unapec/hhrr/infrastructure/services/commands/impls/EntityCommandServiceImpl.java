@@ -30,8 +30,6 @@ public abstract class EntityCommandServiceImpl<TEntity extends AuditableEntity, 
         } catch (Exception ex) {
             var r = 0;
         }
-
-
     }
 
     public void saveAll(Iterable<TEntity> entities) {

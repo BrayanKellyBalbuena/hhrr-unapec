@@ -13,7 +13,8 @@ import javax.validation.constraints.NegativeOrZero;
 @EqualsAndHashCode(callSuper = true)
 public class JobQueryDto extends CatalogQueryDto<Long> {
     private long riskLevelId;
-    private String riskLevel;
+    private String riskLevelName;
     private double mininumSalary;
     private double maximunSalary;
+    private Long numberOfApplications;
 }

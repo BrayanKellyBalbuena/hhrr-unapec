@@ -13,7 +13,7 @@ public interface SkillQueryRepository extends EntityQueryRepository<Skill, Long>
             value = "select s.* from skills s join candidates_skills c on s.id=c.skill_id and c.candidate_id=?1 ORDER BY s.id",
             countQuery = "SELECT count(*) from skills s join candidates_skills c on s.id=c.skill_id and c.candidate_id=?1",
             nativeQuery = true)
-    Page<Skill> findByCandidatesId(long userId, Pageable pageable);
+    Page<Skill> findByCandidateId(long userId, Pageable pageable);
 
     @Query(
             value = "select s.* from skills s where not exists (select skill_id from candidates_skills c where skill_id = s.id and c.candidate_id=?1)",

@@ -6,12 +6,12 @@ import { JobUpdateComponent } from './job-update/job-update.component';
 import { SharedModule } from '../../../shared/shared.module';
 
 
-
 @NgModule({
   declarations: [
     JobListComponent,
     JobCreateComponent,
-    JobUpdateComponent],
+    JobUpdateComponent,
+   ],
   imports: [
     CommonModule,
     SharedModule
@@ -19,6 +19,7 @@ import { SharedModule } from '../../../shared/shared.module';
   exports: [
     JobListComponent,
     JobCreateComponent,
-    JobUpdateComponent]
+    JobUpdateComponent,
+    ]
 })
 export class JobModule { }

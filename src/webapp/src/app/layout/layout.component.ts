@@ -52,6 +52,7 @@ export class LayoutComponent implements OnInit{
         [
           { title: 'My skills', url: '/candidate-skills' },
           { title: 'My languages', url: '/candidate-languages' },
+          { title: 'My trainings', url: '/candidate-trainings'}
         ]
       },
       {
@@ -59,6 +60,7 @@ export class LayoutComponent implements OnInit{
         icon: 'file-search',
         items: [
           { title: 'Search Jobs', url: '/candidate-jobs-seach' },
+          { title: 'Jobs applied', url: '/candidate-applied-jobs' },
         ]
       }
      ];

@@ -8,4 +8,5 @@ import org.springframework.data.domain.Pageable;
 public interface TrainingQueryRepository extends EntityQueryRepository<Training, Long> {
     Page<Training> findByNameContains(String name, Pageable pageable);
     Page<Training> findByDescriptionContains(String description, Pageable pageable);
+    Page<Training> findByCandidateId(Long userId, Pageable pageable);
 }

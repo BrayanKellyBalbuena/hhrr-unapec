@@ -3,9 +3,11 @@ package edu.unapec.hhrr.infrastructure.services.queries.impls;
 import edu.unapec.hhrr.core.entities.Candidate;
 import edu.unapec.hhrr.infrastructure.repositories.queries.CandidateQueryRepository;
 import edu.unapec.hhrr.infrastructure.repositories.queries.EntityQueryRepository;
+import edu.unapec.hhrr.infrastructure.security.services.UserDetailsImpl;
 import edu.unapec.hhrr.infrastructure.services.queries.CandidateQueryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -48,5 +50,11 @@ public class CandidateQueryServiceImpl extends EntityQueryServiceImpl<Candidate,
     @Override
     public Optional<Candidate> findByUserId(Long id) {
         return candidateQueryRepository.findByUserId(id);
+    }
+
+    @Override
+    public Candidate getCurrentCandidate() {
+        var current = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return candidateQueryRepository.findByUserId(current.getId()).get();
     }
 }

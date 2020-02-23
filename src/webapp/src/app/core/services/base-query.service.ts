@@ -21,12 +21,19 @@ export abstract class BaseQueryService<TQuery extends BaseQuery> implements Quer
     this.httpClient = httpClient;
   }
 
-  getAll(pageRequest: PageRequest): Observable<PageResponse<TQuery>> {
+  getHttpParams(pageRequest: PageRequest): HttpParams {
     const requesParams = new HttpParams()
     .set('pageNumber', pageRequest.pageNumber.toString())
     .set('pageSize', pageRequest.pageSize.toString())
     .set('sortDirection', pageRequest.sortDirection)
     .set('sortField', pageRequest.sortField);
+
+    return requesParams;
+
+  }
+
+  getAll(pageRequest: PageRequest): Observable<PageResponse<TQuery>> {
+    const requesParams = this.getHttpParams(pageRequest);
 
     return this.httpClient.get<PageResponse<TQuery>>(this.endPoint, {headers: this.headers, params: requesParams});
 

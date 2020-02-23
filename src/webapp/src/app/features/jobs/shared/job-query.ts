@@ -2,9 +2,14 @@ import { BaseQuery } from '../../../core/models/base-query';
 import { CatalogQuery } from '../../../core/models/catalog-query';
 import { Job } from '../../../core/models/job';
 
-export interface JobQuery extends CatalogQuery {
+export class JobQuery implements CatalogQuery {
+  name: string;
+  description: string;
+  version: number;
+  id: number;
   riskLevelId: number;
-  riskLevel: string;
+  riskLevelName: string;
   mininumSalary: number;
   maximunSalary: number;
+  numberOfApplications: number;
 }

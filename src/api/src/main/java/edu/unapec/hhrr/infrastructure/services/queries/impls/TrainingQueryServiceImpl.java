@@ -1,8 +1,11 @@
 package edu.unapec.hhrr.infrastructure.services.queries.impls;
 
+import edu.unapec.hhrr.core.entities.Job;
 import edu.unapec.hhrr.core.entities.Training;
+import edu.unapec.hhrr.infrastructure.dtos.queries.PageRequestDto;
 import edu.unapec.hhrr.infrastructure.repositories.queries.TrainingQueryRepository;
 import edu.unapec.hhrr.infrastructure.services.queries.TrainingQueryService;
+import edu.unapec.hhrr.utils.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,5 +30,10 @@ public class TrainingQueryServiceImpl extends EntityQueryServiceImpl<Training, L
     @Override
     public Page<Training> findByDescription(String description, Pageable pageable) {
         return queryRepository.findByDescriptionContains(description, pageable);
+    }
+
+    @Override
+    public Page<Training> findByCandidateId(Long userId, PageRequestDto pageRequestDto) {
+       return this.queryRepository.findByCandidateId(userId, Converter.PageRequestDtoToPageable(pageRequestDto));
     }
 }

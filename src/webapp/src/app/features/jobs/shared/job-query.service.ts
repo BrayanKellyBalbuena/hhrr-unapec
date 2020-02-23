@@ -21,4 +21,14 @@ export class JobQueryService extends CatalogQueryService<JobQuery> {
     );
   }
 
+  public getCandidateJobs(pageRequest: PageRequest): Observable<PageResponse<JobQuery>> {
+    return this.httpClient.get<PageResponse<JobQuery>>(endPoints.candidateJobs,
+       {headers: this.headers, params: this.getHttpParams(pageRequest)});
+  }
+
+  public getCandidateNoApplyJobs(pageRequest: PageRequest): Observable<PageResponse<JobQuery>> {
+    return this.httpClient.get<PageResponse<JobQuery>>(endPoints.candidateNotApplieyJobs,
+      {headers: this.headers, params: this.getHttpParams(pageRequest)});
+  }
+
 }

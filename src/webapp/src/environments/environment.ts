@@ -30,8 +30,11 @@ export const endPoints = {
   candidatesGetLanguages: environment.host + environment.port + environment.api  + 'candidates/get_languages/',
   candidates_not_assign_languages: environment.host + environment.port + environment.api  + 'candidates/not_assign_languages/',
   candidates_add_languages: environment.host + environment.port + environment.api  + 'candidates/add_languages/',
-  candidateJobApply: environment.host + environment.port + environment.api  + 'candidates/jobs/apply/',
   candidateDeleteLanguage: environment.host + environment.port + environment.api  + 'candidates/languages/',
+  candidateJobApply: environment.host + environment.port + environment.api  + 'candidates/jobs/apply/',
+  candidateJobs: environment.host + environment.port + environment.api  + 'candidates/jobs/',
+  candidateNotApplieyJobs: environment.host + environment.port + environment.api  + 'candidates/jobs/no_apply',
+  candidateTrainings: environment.host + environment.port + environment.api  + 'candidates/trainings/',
 };
 
 /*

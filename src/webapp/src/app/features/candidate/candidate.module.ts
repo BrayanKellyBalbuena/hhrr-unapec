@@ -7,25 +7,33 @@ import { CandidateAddSkillComponent } from './candidate-add-skill/candidate-add-
 import { CandidateJobSeachListComponent } from './candidate-search-jobs/candidate-search-jobs.component';
 import { CandidateAddLanguageComponent } from './candidate-add-language/candidate-add-language.component';
 import { CandidateLanguageListComponent } from './candidate-language-list/candidate-language-list.component';
+import { CandidateAppliedJobsListComponent } from './candidate-applied-jobs/candidate-applied-jobs.component';
+import { CandidateTrainingListComponent } from './candidate-trainings/candidate-training-list/candidate-training-list.component';
+import { CandidateTrainingsModule } from './candidate-trainings/candidate-training.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    CandidateTrainingsModule,
   ],
   declarations: [CandidateCreateComponent,
      CandidateSkillListComponent,
     CandidateAddSkillComponent,
     CandidateJobSeachListComponent,
     CandidateAddLanguageComponent,
-  CandidateLanguageListComponent],
-  exports:[
+  CandidateLanguageListComponent,
+CandidateAppliedJobsListComponent],
+
+  exports: [
     CandidateCreateComponent,
     CandidateSkillListComponent,
     CandidateAddLanguageComponent,
     CandidateLanguageListComponent,
     CandidateAddSkillComponent,
     CandidateJobSeachListComponent,
+    CandidateAppliedJobsListComponent,
+    CandidateTrainingsModule
   ]
 })
 export class CandidateModule { }

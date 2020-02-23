@@ -42,11 +42,14 @@
   <tbody>
     <tr *ngFor="let data of listOfData; let i = index">
       <td>{{ data.id}}</td>
-      <td>{{ data.riskLevel}}</td>
-      <td>{{ data.name }}</td>
+      <td>{{ data.name}}</td>
+      <td>{{ data.riskLevelName}}</td>
       <td>{{data.mininumSalary}}</td>
       <td>{{data.maximunSalary}}</td>
-      <!-- <td>{{data.description}}</td> -->
+      <td>
+        <nz-badge [nzCount]="data.numberOfApplications" [nzStyle]="{ backgroundColor: '#52c41a' }">
+
+        </nz-badge></td>
       <td>
         <div nz-row nz-row nzGutter="10">
           <span nz-col class="gutter-row">

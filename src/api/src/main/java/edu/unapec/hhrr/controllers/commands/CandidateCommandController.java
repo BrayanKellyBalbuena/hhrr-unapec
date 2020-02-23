@@ -2,21 +2,17 @@ package edu.unapec.hhrr.controllers.commands;
 
 import edu.unapec.hhrr.core.entities.*;
 import edu.unapec.hhrr.core.enums.ERole;
-import edu.unapec.hhrr.infrastructure.dtos.abstracts.CatalogWithIdAndNameQueryDto;
 import edu.unapec.hhrr.infrastructure.dtos.commands.candidate.CandidateCreateCommandDto;
 import edu.unapec.hhrr.infrastructure.dtos.commands.candidate.CandidateUpdateCommandDto;
-import edu.unapec.hhrr.infrastructure.dtos.commands.language.LanguageCreateCommandDto;
 import edu.unapec.hhrr.infrastructure.dtos.commands.language.LanguageUpdateCommandDto;
 import edu.unapec.hhrr.infrastructure.dtos.queries.skill.SkillQueryDto;
 import edu.unapec.hhrr.infrastructure.exceptions.UserExistException;
 import edu.unapec.hhrr.infrastructure.repositories.RoleRepository;
 import edu.unapec.hhrr.infrastructure.repositories.UserRepository;
-import edu.unapec.hhrr.infrastructure.repositories.queries.CandidateQueryRepository;
 import edu.unapec.hhrr.infrastructure.repositories.queries.LanguageQueryRepository;
 import edu.unapec.hhrr.infrastructure.repositories.queries.SkillQueryRepository;
 import edu.unapec.hhrr.infrastructure.security.jwt.JwtUtils;
 import edu.unapec.hhrr.infrastructure.security.services.UserDetailsImpl;
-import edu.unapec.hhrr.infrastructure.security.services.UserDetailsServiceImpl;
 import edu.unapec.hhrr.infrastructure.services.commands.CandidateCommandService;
 import edu.unapec.hhrr.infrastructure.services.queries.CandidateQueryService;
 import edu.unapec.hhrr.infrastructure.services.queries.JobQueryService;
@@ -28,7 +24,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +33,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -123,7 +117,7 @@ public class CandidateCommandController  extends EntityCommandController<Candida
         var c = candidateQueryService.findByUserId( current.getId()).get();
 
        return this.skillQueryRepository
-               .findByCandidatesId(c.getId(), pageable).map(e -> mapper.map(e, SkillQueryDto.class));
+               .findByCandidateId(c.getId(), pageable).map(e -> mapper.map(e, SkillQueryDto.class));
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -173,7 +167,7 @@ public class CandidateCommandController  extends EntityCommandController<Candida
 
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PostMapping("/jobs/{id}")
+    @PostMapping("/jobs/apply/{id}")
     public void applyJob(@PathVariable Long id) {
         var job = jobQueryService.findById(id);
 
@@ -185,4 +179,6 @@ public class CandidateCommandController  extends EntityCommandController<Candida
             commandService.save(candidate);
         }
     }
+
+
 }

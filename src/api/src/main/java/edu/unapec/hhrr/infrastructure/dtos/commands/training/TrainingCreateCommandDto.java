@@ -16,4 +16,6 @@ public class TrainingCreateCommandDto extends CatalogCreateCommand {
 
     @NotNull(message = "Institution is required")
     private Long institutionId;
+
+    private Long candidateId;
 }

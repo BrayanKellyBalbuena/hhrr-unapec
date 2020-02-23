@@ -11,6 +11,9 @@ import { JobUpdateComponent } from '../../jobs/job-update/job-update.component';
 import { JobQueryService } from '../../jobs/shared/job-query.service';
 import { JobCommandService } from '../../jobs/shared/job-command.service';
 import { JobUpdateCommand } from '../../jobs/shared/job-update-command';
+import { CandidateCommandService } from '../shared/candidate-command.service';
+import { JobDetailsComponent } from '../../../../shared/components/job-details/job-details.component';
+import { Message } from '../../../core/enums/message.enum';
 
 
 @Component({
@@ -30,26 +33,29 @@ export class CandidateJobSeachListComponent implements OnInit, AfterViewInit {
 
   sortProperties = [
     { value: 'id', displayName: 'Number' },
-    { value: 'riskLevel', displayName: 'Risk level'},
     { value: 'name', displayName: 'Name' },
+    { value: 'riskLevel', displayName: 'Risk level'},
     { value: 'mininumSalary', displayName: 'Mininum Salary' },
     { value: 'maximunSalary', displayName: 'Maximun Salary' },
-    // { value: 'description', displayName: 'Description' }
+    { value: 'createdDate', displayName: 'Date Publish'}
   ];
 
   filtersProperties = [
     { value: 'id', displayName: 'Number' },
     { value: CatalogSeachField.NAME, displayName: 'Name' },
-    { value: CatalogSeachField.DESCRIPTION, displayName: 'Description' }
+    { value: 'riskLevel', displayName: 'Risk level'},
+    { value: 'mininumSalary', displayName: 'Mininum Salary' },
+    { value: 'maximunSalary', displayName: 'Maximun Salary' },
+    { value: 'createdDate', displayName: 'Date Publish'}
   ];
   searchGenderList: string[] = [];
   selectedFilter: string | null;
   inputSearch: string | null;
   @ViewChild(AlertComponent, {static: false}) alert: AlertComponent;
-  @ViewChild(JobUpdateComponent, {static: false}) updateComponent: JobUpdateComponent;
+  @ViewChild(JobDetailsComponent, {static: false}) jobDetailsComponent: JobDetailsComponent;
 
-  constructor(private queryService: JobQueryService,
-              private commandService: JobCommandService ) {
+  constructor(private jobQueryService: JobQueryService,
+              private commandService: CandidateCommandService ) {
     this.pageRequest = new PageRequest();
   }
   ngOnInit(): void {
@@ -78,7 +84,7 @@ export class CandidateJobSeachListComponent implements OnInit, AfterViewInit {
       this.pageRequest.pageNumber = 1;
     }
     this.loading = true;
-    this.queryService.getAll(this.pageRequest).subscribe(data => {
+    this.jobQueryService.getCandidateNoApplyJobs(this.pageRequest).subscribe(data => {
       this.loading = false;
       this.totalPage = data.totalElements;
       this.listOfData = data.content;
@@ -100,40 +106,28 @@ export class CandidateJobSeachListComponent implements OnInit, AfterViewInit {
       return ;
     }
     if (this.selectedFilter === 'id') {
-      this.queryService
+      this.jobQueryService
         .getById(+searchText)
         .subscribe(data => this.listOfData.push(data));
     } else if (this.selectedFilter === CatalogSeachField.NAME) {
-      this.queryService
+      this.jobQueryService
         .getByName(searchText, this.pageRequest)
         .subscribe(data => (this.listOfData = data.content));
     } else if (this.selectedFilter === CatalogSeachField.DESCRIPTION) {
-      this.queryService
+      this.jobQueryService
         .getByDescription(searchText, this.pageRequest)
         .subscribe(data => (this.listOfData = data.content));
     }
   }
 
-  delete(id: number) {
-    this.commandService.delete(id).subscribe(result => {
-      this.showAlert = true;
-      this.alert.success('Delete Sucessfully');
-      this.searchData();
-    },
-      (errResponse: HttpErrorResponse) => {
-        console.log(errResponse);
-        this.showAlert = true;
-        this.alert.error(errResponse.error['error'], errResponse.error['message']);
-      });
-  }
 
-  apply(updateCommnad: JobUpdateCommand) {
-    this.updateComponent.showModal( Object.assign({}, updateCommnad) );
+  viewDetails(job: JobQuery) {
+    this.jobDetailsComponent.showModal(Object.assign({}, job) );
   }
 
   onUpdateComplete($event: true) {
     this.searchData();
-    this.alert.success('Update Successfully');
+    this.alert.success(Message.UPDATE_SUCCESS);
   }
 
   onCreateCompleted($event) {
