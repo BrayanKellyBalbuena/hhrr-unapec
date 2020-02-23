@@ -27,5 +27,10 @@ public class LanguageQueryServiceImpl extends EntityQueryServiceImpl<Language, L
     public Page<Language> findByDescription(String description, Pageable pageable) {
        return languageQueryRepository.findByDescriptionContains(description, pageable);
     }
+
+
+    public Page<Language> findAllNotMatchCandidate(long userId, Pageable pageable) {
+      return languageQueryRepository.findAllNotMatchCandidate(userId, pageable);
+    }
 }
 

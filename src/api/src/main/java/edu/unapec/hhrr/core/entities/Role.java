@@ -2,12 +2,16 @@ package edu.unapec.hhrr.core.entities;
 
 import edu.unapec.hhrr.core.enums.ERole;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-@Data
+@Getter
+@Setter
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

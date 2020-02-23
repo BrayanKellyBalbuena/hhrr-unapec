@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CandidateQueryServiceImpl extends EntityQueryServiceImpl<Candidate, Long> implements CandidateQueryService {
 
@@ -41,5 +43,10 @@ public class CandidateQueryServiceImpl extends EntityQueryServiceImpl<Candidate,
     @Override
     public Page<Candidate> findAllBySkillsEquals(Long skill, Pageable pageable) {
         return null;
+    }
+
+    @Override
+    public Optional<Candidate> findByUserId(Long id) {
+        return candidateQueryRepository.findByUserId(id);
     }
 }

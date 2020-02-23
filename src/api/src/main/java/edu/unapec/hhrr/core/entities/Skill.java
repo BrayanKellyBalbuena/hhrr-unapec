@@ -1,6 +1,9 @@
 package edu.unapec.hhrr.core.entities;
 
 import edu.unapec.hhrr.core.entities.abstracts.Catalog;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -11,6 +14,8 @@ import java.util.Set;
 @Table(name = "skills", indexes = {@Index(name = "idx_skill_isActive", columnList = "is_active"),
         @Index(name = "uidx_skills_name", columnList = "name", unique = true)})
 @Where(clause = "is_active = true")
+@Getter
+@Setter
 public class Skill extends Catalog<Long> {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "skills")
     private Set<Candidate> candidates = new HashSet<>();

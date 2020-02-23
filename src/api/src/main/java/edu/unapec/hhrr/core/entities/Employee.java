@@ -2,6 +2,9 @@ package edu.unapec.hhrr.core.entities;
 
 import edu.unapec.hhrr.core.entities.abstracts.AdultPerson;
 import edu.unapec.hhrr.core.entities.abstracts.AuditableEntity;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -12,6 +15,8 @@ import java.time.LocalDate;
         @Index(name = "idx_employees_first_name", columnList = "first_name"),
         @Index(name = "idx_employees_last_name", columnList = "last_name")})
 @Where(clause = "is_active = true")
+@Getter
+@Setter
 public class Employee extends AdultPerson<Long> {
 
     private LocalDate hireDate;

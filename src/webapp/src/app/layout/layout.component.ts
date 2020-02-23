@@ -43,6 +43,25 @@ export class LayoutComponent implements OnInit{
             { title: 'Post jobs', url: '/jobs' },
           ]
         }];
+   } else {
+     this.navitationSubmenus = [
+      {
+        title: 'Mantenimientos',
+        icon: 'setting',
+        items:
+        [
+          { title: 'My skills', url: '/candidate-skills' },
+          { title: 'My languages', url: '/candidate-languages' },
+        ]
+      },
+      {
+        title: 'Jobs',
+        icon: 'file-search',
+        items: [
+          { title: 'Search Jobs', url: '/candidate-jobs-seach' },
+        ]
+      }
+     ];
    }
   }
 

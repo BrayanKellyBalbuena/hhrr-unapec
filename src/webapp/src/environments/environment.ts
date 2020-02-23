@@ -22,7 +22,16 @@ export const endPoints = {
   jobs: environment.host + environment.port + environment.api + 'jobs/',
   trainings: environment.host + environment.port + environment.api + 'trainings/',
   signin: environment.host + environment.port + environment.api + environment.auth + 'signin',
-  candidates: environment.host + environment.port + environment.api  + 'candidates/'
+  candidates: environment.host + environment.port + environment.api  + 'candidates/',
+  candidates_add_skills: environment.host + environment.port + environment.api  + 'candidates/add_skills/',
+  candidateDeleteSkill: environment.host + environment.port + environment.api  + 'candidates/skills/',
+  candidates_not_assign_skills: environment.host + environment.port + environment.api  + 'candidates/not_assign_skills/',
+  candidatesGetSkills: environment.host + environment.port + environment.api  + 'candidates/get_skills/',
+  candidatesGetLanguages: environment.host + environment.port + environment.api  + 'candidates/get_languages/',
+  candidates_not_assign_languages: environment.host + environment.port + environment.api  + 'candidates/not_assign_languages/',
+  candidates_add_languages: environment.host + environment.port + environment.api  + 'candidates/add_languages/',
+  candidateJobApply: environment.host + environment.port + environment.api  + 'candidates/jobs/apply/',
+  candidateDeleteLanguage: environment.host + environment.port + environment.api  + 'candidates/languages/',
 };
 
 /*

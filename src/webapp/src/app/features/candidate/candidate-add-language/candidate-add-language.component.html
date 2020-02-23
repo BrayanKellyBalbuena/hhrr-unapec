@@ -1,0 +1,32 @@
+<button nz-button  class="green-6" (click)="showModal()">
+  <i nz-icon nzType="plus"></i>
+  Add new Language
+</button>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk(form)"
+  [nzOkLoading]="isOkLoading"
+>
+<app-alert [showAlert]=showAlert></app-alert>
+
+<form nz-form #form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="24">Languages:</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Input is required and minlength is 4">
+      <nz-select name = "skillId"
+      [nzMaxTagCount]="3"
+      [nzMaxTagPlaceholder]="tagPlaceHolder"
+      nzMode="multiple"
+      nzPlaceHolder="Please select"
+      [(ngModel)]="listOfSelectedValue"
+    >
+      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.name" [nzValue]="option"></nz-option>
+    </nz-select>
+    <ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+</nz-modal>

@@ -1,13 +1,18 @@
 package edu.unapec.hhrr.infrastructure.dtos.abstracts;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
 public abstract class CandidateUpdateDto<ID> extends AuditableQueryDto<ID> {
     @NotBlank(message = "Identity card can't be blank")
     @Size(min = 11, max = 11, message = "Identity card must be 11 digits")

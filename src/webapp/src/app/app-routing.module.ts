@@ -5,6 +5,7 @@ import { SigninSignupComponent } from './layout/signin-signup/signin-signup.comp
 import { AuthGuardService as AuthGuard  } from '../shared/services/auth-guard.service';
 import { LoginComponent } from './features/security/login/login.component';
 import { CandidateCreateComponent } from './features/candidate/candidate-create/candidate-create.component';
+import { CandidateJobSeachListComponent } from './features/candidate/candidate-search-jobs/candidate-search-jobs.component';
 
 const routes: Routes = [
     {path: '', component: LayoutComponent, canActivate: [AuthGuard]},

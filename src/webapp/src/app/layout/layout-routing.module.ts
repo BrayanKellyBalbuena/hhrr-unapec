@@ -7,6 +7,9 @@ import { SkillListComponent } from '../features/skill/skill-list/skill-list.comp
 import { InstitutionListComponent } from '../features/institution/institution-list/institution-list.component';
 import { JobListComponent } from '../features/jobs/job-list/job-list.component';
 import { TrainingListComponent } from '../features/training/training-list/training-list.component';
+import { CandidateSkillListComponent } from '../features/candidate/candidate-skill-list/candidate-skill-list.component';
+import { CandidateJobSeachListComponent } from '../features/candidate/candidate-search-jobs/candidate-search-jobs.component';
+import { CandidateLanguageListComponent } from '../features/candidate/candidate-language-list/candidate-language-list.component';
 
 
 const routes: Routes = [{
@@ -16,7 +19,10 @@ const routes: Routes = [{
     { path: 'skills', component: SkillListComponent },
     { path: 'institutions', component: InstitutionListComponent },
     { path: 'jobs', component: JobListComponent},
-    { path: 'trainings', component: TrainingListComponent}
+    { path: 'trainings', component: TrainingListComponent},
+    {path: 'candidate-skills', component: CandidateSkillListComponent},
+    {path: 'candidate-jobs-seach', component: CandidateJobSeachListComponent},
+    {path: 'candidate-languages', component: CandidateLanguageListComponent}
     // },
     // { path: 'balance', loadChildren: () => import(`./balance/balance.module`).then(m => m.BalanceModule) },
     // {

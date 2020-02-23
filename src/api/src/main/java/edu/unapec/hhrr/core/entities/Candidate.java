@@ -3,6 +3,9 @@ package edu.unapec.hhrr.core.entities;
 import edu.unapec.hhrr.core.entities.abstracts.AdultPerson;
 import edu.unapec.hhrr.core.entities.abstracts.Person;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
@@ -16,7 +19,8 @@ import java.util.Set;
 @Table(name = "candidates", indexes = {@Index(name = "idx_candidates_isActive", columnList = "is_active"),
         @Index(name = "idx_candidates_first_name", columnList = "first_name"),
         @Index(name = "idx_candidates_last_name", columnList = "last_name")})
-@Data
+@Getter
+@Setter
 public class Candidate extends AdultPerson<Long> {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "candidate")
     private Set<WorkExperience> workExperiences = new HashSet<>();
@@ -48,10 +52,31 @@ public class Candidate extends AdultPerson<Long> {
             CascadeType.PERSIST,
             CascadeType.MERGE
     },fetch = FetchType.LAZY)
-    @JoinTable(name = "cantidates_languagues",
+    @JoinTable(name = "candidates_languages",
             joinColumns = @JoinColumn(name = "candidate_id", foreignKey =
-            @ForeignKey(name = "fk_cantidates_languagues_candidate")),
+            @ForeignKey(name = "fk_candidates_languagues_candidate")),
             inverseJoinColumns = @JoinColumn(name = "language_id",
                     foreignKey = @ForeignKey(name = "fk_cantidates_languagues_languages")))
     private Set<Language> languages = new HashSet<>();
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    }, fetch = FetchType.LAZY)
+    @JoinTable(name = "jobs_candidates",
+            joinColumns = @JoinColumn(name = "candidate_id",
+                    foreignKey = @ForeignKey(name = "fk_jobs_cantidates_candidates")),
+            inverseJoinColumns = @JoinColumn(name = "job_id",
+                    foreignKey = @ForeignKey(name = "fk_jobs_cantidates_jobs"))
+    )
+    private Set<Job> jobs = new HashSet<>();
+
+    @Override()
+    public String toString() {
+        var stringBuilder = new  StringBuilder();
+        stringBuilder.append("Id:" + this.getId());
+        stringBuilder.append("First name:" + this.getFirstName());
+        stringBuilder.append("Last name:" + this.getLastName());
+        return stringBuilder.toString();
+    }
 }

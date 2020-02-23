@@ -24,4 +24,27 @@ export class SkillQueryService extends CatalogQueryService<SkillQuery> {
   public getWithIdName(pageRequest: PageRequest): Observable<PageResponse<CatalogWithIdAndNameQuery>> {
     return super.getWithIdName(pageRequest, endPoints.skills_with_id_name);
   }
+
+  getAllCandidateNoAssingSkill(pageRequest: PageRequest): Observable<PageResponse<CatalogWithIdAndNameQuery>> {
+    const requesParams = new HttpParams()
+    .set('pageNumber', pageRequest.pageNumber.toString())
+    .set('pageSize', pageRequest.pageSize.toString())
+    .set('sortDirection', pageRequest.sortDirection)
+    .set('sortField', pageRequest.sortField);
+
+    return this.httpClient.get<PageResponse<CatalogWithIdAndNameQuery>>(endPoints.candidates_not_assign_skills,
+       {headers: this.headers, params: requesParams});
+
+  }
+
+  getCandidatesSkill(pageRequest: PageRequest): Observable<PageResponse<SkillQuery>> {
+    const requesParams = new HttpParams()
+    .set('pageNumber', pageRequest.pageNumber.toString())
+    .set('pageSize', pageRequest.pageSize.toString())
+    .set('sortDirection', pageRequest.sortDirection)
+    .set('sortField', pageRequest.sortField);
+
+    return this.httpClient.get<PageResponse<SkillQuery>>(endPoints.candidatesGetSkills,
+       {headers: this.headers, params: requesParams});
+  }
 }
