@@ -1,10 +1,12 @@
 package edu.unapec.hhrr.infrastructure.services.queries.impls;
 
 import edu.unapec.hhrr.core.entities.Candidate;
+import edu.unapec.hhrr.infrastructure.dtos.queries.PageRequestDto;
 import edu.unapec.hhrr.infrastructure.repositories.queries.CandidateQueryRepository;
 import edu.unapec.hhrr.infrastructure.repositories.queries.EntityQueryRepository;
 import edu.unapec.hhrr.infrastructure.security.services.UserDetailsImpl;
 import edu.unapec.hhrr.infrastructure.services.queries.CandidateQueryService;
+import edu.unapec.hhrr.utils.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -56,5 +58,10 @@ public class CandidateQueryServiceImpl extends EntityQueryServiceImpl<Candidate,
     public Candidate getCurrentCandidate() {
         var current = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return candidateQueryRepository.findByUserId(current.getId()).get();
+    }
+
+    @Override
+    public Page<Candidate> findAllCandidatesByApplyJobId(Long jobId, PageRequestDto pageRequestDto) {
+        return candidateQueryRepository.findAllCandidatesByApplyJobId(jobId, Converter.PageRequestDtoToPageable(pageRequestDto));
     }
 }

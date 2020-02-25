@@ -1,6 +1,7 @@
 package edu.unapec.hhrr.infrastructure.services.queries;
 
 import edu.unapec.hhrr.core.entities.Candidate;
+import edu.unapec.hhrr.infrastructure.dtos.queries.PageRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,5 +14,7 @@ public interface CandidateQueryService  extends  EntityQueryService<Candidate, L
     Page<Candidate> findByAgeEquals(short age, Pageable pageable);
     Page<Candidate> findAllBySkillsEquals (Long skill, Pageable pageable);
     Optional<Candidate> findByUserId(Long id);
-    public Candidate getCurrentCandidate();
+    Candidate getCurrentCandidate();
+    Page<Candidate> findAllCandidatesByApplyJobId(Long jobId, PageRequestDto pageable);
+
 }

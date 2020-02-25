@@ -35,6 +35,7 @@ export const endPoints = {
   candidateJobs: environment.host + environment.port + environment.api  + 'candidates/jobs/',
   candidateNotApplieyJobs: environment.host + environment.port + environment.api  + 'candidates/jobs/no_apply',
   candidateTrainings: environment.host + environment.port + environment.api  + 'candidates/trainings/',
+  jobsAppliedCandidates: environment.host + environment.port + environment.api  + 'jobs/id/candidates/',
 };
 
 /*

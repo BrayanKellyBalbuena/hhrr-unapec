@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { PageResponse } from '../../../core/models/page-response';
 import { CatalogWithIdAndNameQuery } from '../../../core/models/CatalogWithIdAndNameQuery';
 import { PageRequest } from '../../../core/models/page-request';
+import { CandidateQuery } from '../../candidate/shared/candidate-query';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,11 @@ export class JobQueryService extends CatalogQueryService<JobQuery> {
 
   public getCandidateNoApplyJobs(pageRequest: PageRequest): Observable<PageResponse<JobQuery>> {
     return this.httpClient.get<PageResponse<JobQuery>>(endPoints.candidateNotApplieyJobs,
+      {headers: this.headers, params: this.getHttpParams(pageRequest)});
+  }
+
+  public getCandidateApply(jobId: number, pageRequest: PageRequest): Observable<PageResponse<CandidateQuery>> {
+    return this.httpClient.get<PageResponse<CandidateQuery>>(endPoints.jobsAppliedCandidates.replace('id', jobId.toString()),
       {headers: this.headers, params: this.getHttpParams(pageRequest)});
   }
 

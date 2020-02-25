@@ -20,5 +20,4 @@ export class CandidateQueryService extends BaseQueryService<CandidateQuery> {
       httpClient
     );
   }
-
 }

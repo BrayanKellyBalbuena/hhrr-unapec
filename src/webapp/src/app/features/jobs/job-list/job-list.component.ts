@@ -11,6 +11,7 @@ import { JobQueryService } from '../shared/job-query.service';
 import { JobCommandService } from '../shared/job-command.service';
 import { JobUpdateCommand } from '../shared/job-update-command';
 import { JobUpdateComponent } from '../job-update/job-update.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-list',
@@ -49,7 +50,8 @@ export class JobListComponent implements OnInit, AfterViewInit {
   @ViewChild(JobUpdateComponent, {static: false}) updateComponent: JobUpdateComponent;
 
   constructor(private queryService: JobQueryService,
-              private commandService: JobCommandService ) {
+              private commandService: JobCommandService,
+              private router: Router ) {
     this.pageRequest = new PageRequest();
   }
   ngOnInit(): void {
@@ -138,5 +140,9 @@ export class JobListComponent implements OnInit, AfterViewInit {
 
   onCreateCompleted($event) {
     this.searchData();
+  }
+
+  showCandidates(jobId: number) {
+    return this.router.navigate([`/jobs/${jobId}/candidates/`]);
   }
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 public class CandidateQueryDto extends AuditableQueryDto<Long> {
-    private short identityCard;
+    private String identityCard;
     private String firstName;
     private String lastName;
     private String email;

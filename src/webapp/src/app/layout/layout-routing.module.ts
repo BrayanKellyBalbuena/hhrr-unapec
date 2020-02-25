@@ -12,6 +12,7 @@ import { CandidateJobSeachListComponent } from '../features/candidate/candidate-
 import { CandidateLanguageListComponent } from '../features/candidate/candidate-language-list/candidate-language-list.component';
 import { CandidateAppliedJobsListComponent } from '../features/candidate/candidate-applied-jobs/candidate-applied-jobs.component';
 import { CandidateTrainingListComponent } from '../features/candidate/candidate-trainings/candidate-training-list/candidate-training-list.component';
+import { JobCandidateAppliedListComponent } from '../features/jobs/jobs-candidates-applied-list/jobs-candidates-applied-list.component';
 
 
 const routes: Routes = [{
@@ -20,13 +21,21 @@ const routes: Routes = [{
     { path: 'risk_levels', component: RiskLevelListComponent },
     { path: 'skills', component: SkillListComponent },
     { path: 'institutions', component: InstitutionListComponent },
-    { path: 'jobs', component: JobListComponent},
+    { path: 'jobs', children: [
+     {path: '', component: JobListComponent},
+      {path: ':id/candidates', component: JobCandidateAppliedListComponent}
+     ]},
+    // { path: 'jobs/:id', component: JobListComponent,
+    //    children: [
+    //      {path: 'candidates', component: JobCandidateAppliedListComponent}
+    //     ]},
     { path: 'trainings', component: TrainingListComponent},
     {path: 'candidate-skills', component: CandidateSkillListComponent},
     {path: 'candidate-jobs-seach', component: CandidateJobSeachListComponent},
     {path: 'candidate-languages', component: CandidateLanguageListComponent},
     {path: 'candidate-applied-jobs', component: CandidateAppliedJobsListComponent},
-    {path: 'candidate-trainings', component: CandidateTrainingListComponent}
+    {path: 'candidate-trainings', component: CandidateTrainingListComponent},
+
     // },
     // { path: 'balance', loadChildren: () => import(`./balance/balance.module`).then(m => m.BalanceModule) },
     // {

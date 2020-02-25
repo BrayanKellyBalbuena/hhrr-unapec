@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-public abstract class EntityQueryController<TEntity extends AuditableEntity , TDto extends BaseQueryDto, ID> {
+public abstract class EntityQueryController<TEntity extends AuditableEntity, TDto extends BaseQueryDto, ID> {
 
     protected EntityQueryService<TEntity, ID> queryService;
     protected ModelMapper mapper;
     protected Class<TEntity> entityClass;
     protected Class<TDto> dtoClass;
 
-    public EntityQueryController(EntityQueryService<TEntity, ID> queryService,Class<TEntity> entityClass,
+    public EntityQueryController(EntityQueryService<TEntity, ID> queryService, Class<TEntity> entityClass,
                                  Class<TDto> dtoClass, ModelMapper mapper) {
         this.queryService = queryService;
         this.mapper = mapper;
@@ -29,16 +29,15 @@ public abstract class EntityQueryController<TEntity extends AuditableEntity , TD
 
     @GetMapping()
     public Page<TDto> get(PageRequestDto pageRequest) {
-     var a =   queryService.findAll(pageRequest).map(entity -> mapper.map(entity, dtoClass));
-        return a;
+        return queryService.findAll(pageRequest).map(entity -> mapper.map(entity, dtoClass));
     }
 
     @GetMapping("/{id}")
     public TDto get(@PathVariable ID id) {
-      return  queryService.findById(id).map( entity ->
-           mapper.map(entity, dtoClass)).
-              orElseThrow(() -> new ResourceNotFoundException(this.getClass().getSimpleName()
-                .replace("Controller","")
-                .replace("Query", "") + " not found with id " + id));
+        return queryService.findById(id).map(entity ->
+                mapper.map(entity, dtoClass)).
+                orElseThrow(() -> new ResourceNotFoundException(this.getClass().getSimpleName()
+                        .replace("Controller", "")
+                        .replace("Query", "") + " not found with id " + id));
     }
 }
