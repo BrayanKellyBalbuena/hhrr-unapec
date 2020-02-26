@@ -47,4 +47,15 @@ export class SkillQueryService extends CatalogQueryService<SkillQuery> {
     return this.httpClient.get<PageResponse<SkillQuery>>(endPoints.candidatesGetSkills,
        {headers: this.headers, params: requesParams});
   }
+
+  getCandidateSkillsById(candidateId: number, pageRequest: PageRequest): Observable<PageResponse<SkillQuery>> {
+    const requesParams = new HttpParams()
+    .set('pageNumber', pageRequest.pageNumber.toString())
+    .set('pageSize', pageRequest.pageSize.toString())
+    .set('sortDirection', pageRequest.sortDirection)
+    .set('sortField', pageRequest.sortField);
+
+    return this.httpClient.get<PageResponse<SkillQuery>>(endPoints.skillsByCandidateId.replace('{id}', candidateId.toString()),
+       {headers: this.headers, params: requesParams});
+  }
 }

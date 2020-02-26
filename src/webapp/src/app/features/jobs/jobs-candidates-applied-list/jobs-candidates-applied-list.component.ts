@@ -13,6 +13,7 @@ import { Message } from '../../../core/enums/message.enum';
 import { CandidateCommandService } from '../../candidate/shared/candidate-command.service';
 import { ActivatedRoute } from '@angular/router';
 import { CandidateQuery } from '../../candidate/shared/candidate-query';
+import { CandidateProfileComponent } from '../../../../shared/components/candidate-profile/candidate-profile.component';
 
 
 @Component({
@@ -53,7 +54,7 @@ export class JobCandidateAppliedListComponent implements OnInit, AfterViewInit {
   selectedFilter: string | null;
   inputSearch: string | null;
   @ViewChild(AlertComponent, {static: false}) alert: AlertComponent;
-  @ViewChild(JobDetailsComponent, {static: false}) jobDetailsComponent: JobDetailsComponent;
+  @ViewChild(CandidateProfileComponent, {static: false}) candidateProfileComponent: CandidateProfileComponent;
 
   constructor(private jobQueryService: JobQueryService,
               private commandService: CandidateCommandService,
@@ -125,8 +126,8 @@ export class JobCandidateAppliedListComponent implements OnInit, AfterViewInit {
   // }
 
 
-  viewDetails(job: JobQuery) {
-    this.jobDetailsComponent.showModal(Object.assign({}, job) );
+  viewDetails(candidate: CandidateQuery) {
+    this.candidateProfileComponent.showModal(Object.assign({}, candidate) );
   }
 
   onUpdateComplete($event: true) {

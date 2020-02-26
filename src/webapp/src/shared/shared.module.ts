@@ -11,11 +11,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RouterModule } from '@angular/router';
 import { JobDetailsComponent } from './components/job-details/job-details.component';
+import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
 
 @NgModule({
   declarations: [
     AlertComponent,
     JobDetailsComponent,
+    CandidateProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { JobDetailsComponent } from './components/job-details/job-details.compon
     NzIconModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   exports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { JobDetailsComponent } from './components/job-details/job-details.compon
     FormsModule,
     ReactiveFormsModule,
     AlertComponent,
-    JobDetailsComponent
+    JobDetailsComponent,
+    CandidateProfileComponent
    ],
     providers: [LanguageQueryService, LanguageCommandService, AuthInterceptor, AuthGuardService]
 })

@@ -110,17 +110,6 @@ public class CandidateCommandController  extends EntityCommandController<Candida
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/get_skills")
-    public Page<SkillQueryDto> getSkills(Pageable pageable) {
-
-        var current = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        var c = candidateQueryService.findByUserId( current.getId()).get();
-
-       return this.skillQueryRepository
-               .findByCandidateId(c.getId(), pageable).map(e -> mapper.map(e, SkillQueryDto.class));
-    }
-
-    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/not_assign_skills")
     public Page<SkillQueryDto> getNoAssingSkill(Pageable pageable) {
 

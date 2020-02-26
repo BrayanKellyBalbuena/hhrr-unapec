@@ -24,4 +24,10 @@ export class TrainingQueryService extends CatalogQueryService<TrainingQuery> {
        {headers: this.headers, params: this.getHttpParams(pageRequest)});
   }
 
+  public getTrainingsByCandidateId(candidateId: number, pageRequest: PageRequest): Observable<PageResponse<TrainingQuery>> {
+    return this.httpClient.get<PageResponse<TrainingQuery>>
+      (endPoints.trainingsByCandidateId.replace('{id}', candidateId.toString()),
+       {headers: this.headers, params: this.getHttpParams(pageRequest)});
+  }
+
 }

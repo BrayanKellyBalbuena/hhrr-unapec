@@ -43,4 +43,16 @@ export class LanguageQueryService extends CatalogQueryService<LanguageQuery> {
     return this.httpClient.get<PageResponse<LanguageQuery>>(endPoints.candidatesGetLanguages,
        {headers: this.headers, params: requesParams});
   }
+
+  getLanguagesByCandidateId(candidateId: number, pageRequest: PageRequest): Observable<PageResponse<LanguageQuery>> {
+    const requesParams = new HttpParams()
+    .set('pageNumber', pageRequest.pageNumber.toString())
+    .set('pageSize', pageRequest.pageSize.toString())
+    .set('sortDirection', pageRequest.sortDirection)
+    .set('sortField', pageRequest.sortField);
+
+    return this.httpClient.get<PageResponse<LanguageQuery>>
+      (endPoints.languagesByCandidateId.replace('{id}', candidateId.toString()),
+       {headers: this.headers, params: requesParams});
+  }
 }

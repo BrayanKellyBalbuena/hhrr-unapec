@@ -76,6 +76,9 @@ public class Candidate extends AdultPerson<Long> {
     @JoinColumn(name = "candidate_id")
     private Set<Training> trainings = new HashSet<>();
 
+    @Column(name = "is_employee", nullable = false)
+    private boolean isEmployee = false;
+
     @Override()
     public String toString() {
         var stringBuilder = new  StringBuilder();

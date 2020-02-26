@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "Candidates")
 public class CandidateQueryController extends EntityQueryController<Candidate, CandidateQueryDto, Long>  {
 
-    @Autowired
-    LanguageQueryService languageQueryService;
+   private LanguageQueryService languageQueryService;
+   private SkillQueryService skillQueryService;
 
     private CandidateQueryService candidateQueryService;
     private JobQueryService jobQueryService;
@@ -37,14 +37,37 @@ public class CandidateQueryController extends EntityQueryController<Candidate, C
     public CandidateQueryController(@Autowired CandidateQueryService queryService, @Autowired ModelMapper mapper,
                                     @Autowired JobQueryService jobQueryService,
                                     @Autowired LanguageQueryService languageQueryService,
-                                    @Autowired TrainingQueryService trainingQueryService) {
+                                    @Autowired TrainingQueryService trainingQueryService,
+                                    @Autowired SkillQueryService skillQueryService) {
 
         super(queryService, Candidate.class, CandidateQueryDto.class, mapper);
         this.candidateQueryService = queryService;
         this.jobQueryService = jobQueryService;
         this.languageQueryService = languageQueryService;
         this.trainingQueryService = trainingQueryService;
+        this.skillQueryService = skillQueryService;
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/get_skills")
+    public Page<SkillQueryDto> getSkills(PageRequestDto pageRequestDto) {
+
+        var current = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var c = candidateQueryService.findByUserId( current.getId()).get();
+
+        return this.skillQueryService
+                .findByCandidateId(c.getId(), pageRequestDto).map(e -> mapper.map(e, SkillQueryDto.class));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}/skills")
+    public Page<SkillQueryDto> getSkills(@PathVariable Long id,PageRequestDto pageRequestDto) {
+
+        return this.skillQueryService
+                .findByCandidateId(id, pageRequestDto).map(e -> mapper.map(e, SkillQueryDto.class));
+    }
+
+
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/not_assign_languages")
@@ -65,10 +88,27 @@ public class CandidateQueryController extends EntityQueryController<Candidate, C
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}/languages")
+    public Page<LanguagueQueryDto> getLanguages(@PathVariable Long id,PageRequestDto pageRequestDto) {
+
+        return this.languageQueryService.
+                findByCandidatesId(id, pageRequestDto).
+                map(c -> mapper.map(c, LanguagueQueryDto.class));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/jobs")
     public Page<JobQueryDto> getJobs(PageRequestDto pageRequestDto) {
         return this.jobQueryService
                 .findByCandidatesId(this.candidateQueryService.getCurrentCandidate().getId(), pageRequestDto)
+                .map(j -> mapper.map(j, JobQueryDto.class));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}/jobs")
+    public Page<JobQueryDto> getJobs(@PathVariable Long id, PageRequestDto pageRequestDto) {
+        return this.jobQueryService
+                .findByCandidatesId(id, pageRequestDto)
                 .map(j -> mapper.map(j, JobQueryDto.class));
     }
 
@@ -88,5 +128,12 @@ public class CandidateQueryController extends EntityQueryController<Candidate, C
                 .map(j -> mapper.map(j, TrainingQueryDto .class));
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}/trainings")
+    public Page<TrainingQueryDto> getTrainings( @PathVariable Long id, PageRequestDto pageRequestDto) {
+        return this.trainingQueryService
+                .findByCandidateId(id, pageRequestDto)
+                .map(j -> mapper.map(j, TrainingQueryDto .class));
+    }
 
 }

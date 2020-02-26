@@ -4,4 +4,5 @@ export abstract class Candidate {
   lastName: string;
   email: string;
   age: number;
+  isEmployee: boolean;
 }
