@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -187,7 +188,7 @@ public class CandidateCommandController  extends EntityCommandController<Candida
             var employee = mapper.map(candidate, Employee.class);
 
             employee.setId(0L);
-            employee.setHireDate(LocalDateTime.now());
+            employee.setHireDate(LocalDate.now());
             employee.setDepartmentId(7L);
             employee.setVersion(0);
 

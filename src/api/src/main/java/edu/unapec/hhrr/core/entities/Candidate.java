@@ -29,10 +29,7 @@ public class Candidate extends AdultPerson<Long> {
     @NotNull
     @Column(name = "user_id", length = 64)
     private Long userId;
-
-    @NotNull
-    private String email;
-
+    
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable=false, updatable = false)
     private User user;

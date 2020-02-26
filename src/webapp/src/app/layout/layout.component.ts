@@ -23,7 +23,7 @@ export class LayoutComponent implements OnInit {
 
   setNavigationSubmenu() {
     this.title = this.authService.getCurrentUser().username;
-   if (this.authService.getCurrentUser().roles.findIndex(e => e === Role.USER) === -1) {
+    if (this.authService.getCurrentUser().roles.findIndex(e => e === Role.USER) === -1) {
       this.navitationSubmenus  = [
         {
           title: 'Mantenimientos',
@@ -33,7 +33,8 @@ export class LayoutComponent implements OnInit {
             { title: 'Languages', url: '/languages' },
             { title: 'Risk Levels', url: '/risk_levels'},
             { title: 'Skills', url: '/skills'},
-            { title: 'Institutions', url: '/institutions'}
+            { title: 'Institutions', url: '/institutions'},
+            {title: 'Employees', url: '/employees'}
           ]
         },
         {

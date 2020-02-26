@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -21,7 +22,10 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 public class Employee extends AdultPerson<Long> {
 
-    private LocalDateTime hireDate = LocalDateTime.now();
+    @Column
+    private String email;
+
+    private LocalDate hireDate = LocalDate.now();
     @Column(name = "department_id", nullable = false)
     private Long departmentId;
 

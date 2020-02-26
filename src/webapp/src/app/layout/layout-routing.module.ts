@@ -13,6 +13,7 @@ import { CandidateLanguageListComponent } from '../features/candidate/candidate-
 import { CandidateAppliedJobsListComponent } from '../features/candidate/candidate-applied-jobs/candidate-applied-jobs.component';
 import { CandidateTrainingListComponent } from '../features/candidate/candidate-trainings/candidate-training-list/candidate-training-list.component';
 import { JobCandidateAppliedListComponent } from '../features/jobs/jobs-candidates-applied-list/jobs-candidates-applied-list.component';
+import { EmployeeListComponent } from '../features/employee/employee-list/employee-list-jobs.component';
 
 
 const routes: Routes = [{
@@ -24,12 +25,14 @@ const routes: Routes = [{
     { path: 'jobs', children: [
      {path: '', component: JobListComponent},
       {path: ':id/candidates', component: JobCandidateAppliedListComponent}
-     ]},
-    // { path: 'jobs/:id', component: JobListComponent,
-    //    children: [
-    //      {path: 'candidates', component: JobCandidateAppliedListComponent}
-    //     ]},
-    { path: 'trainings', component: TrainingListComponent},
+     ]
+    },
+    {
+      path: 'employees', children: [
+        {path: '', component: EmployeeListComponent},
+      ]
+    },
+    {path: 'trainings', component: TrainingListComponent},
     {path: 'candidate-skills', component: CandidateSkillListComponent},
     {path: 'candidate-jobs-seach', component: CandidateJobSeachListComponent},
     {path: 'candidate-languages', component: CandidateLanguageListComponent},

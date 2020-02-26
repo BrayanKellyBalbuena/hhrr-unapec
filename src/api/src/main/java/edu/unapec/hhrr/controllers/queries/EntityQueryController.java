@@ -29,6 +29,7 @@ public abstract class EntityQueryController<TEntity extends AuditableEntity, TDt
 
     @GetMapping()
     public Page<TDto> get(PageRequestDto pageRequest) {
+        var a = queryService.findAll(pageRequest).map(entity -> mapper.map(entity, dtoClass));
         return queryService.findAll(pageRequest).map(entity -> mapper.map(entity, dtoClass));
     }
 
