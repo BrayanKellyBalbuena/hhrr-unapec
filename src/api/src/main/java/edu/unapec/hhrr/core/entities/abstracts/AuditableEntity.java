@@ -27,7 +27,7 @@ public  class AuditableEntity<ID extends Serializable> extends BaseEntity<ID> {
     protected LocalDateTime createdDate;
 
     @LastModifiedDate
-    @Column(name = "modified_date", nullable = false, updatable = false)
+    @Column(name = "modified_date", nullable = true, updatable = false)
     protected LocalDateTime modifiedDate;
 
     @Column(name = "created_by", length = 64)

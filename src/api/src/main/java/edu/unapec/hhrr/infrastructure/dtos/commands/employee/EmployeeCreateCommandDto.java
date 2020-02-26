@@ -1,4 +1,9 @@
-package edu.unapec.hhrr.infrastructure.dtos.commands;
+package edu.unapec.hhrr.infrastructure.dtos.commands.employee;
 
-public class EmployeeCreateCommandDto {
+import edu.unapec.hhrr.infrastructure.dtos.abstracts.CandidateDto;
+
+import javax.validation.constraints.NotBlank;
+
+public class EmployeeCreateCommandDto extends CandidateDto {
+
 }

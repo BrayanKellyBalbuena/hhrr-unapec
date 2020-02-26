@@ -77,7 +77,7 @@ public class Candidate extends AdultPerson<Long> {
     private Set<Training> trainings = new HashSet<>();
 
     @Column(name = "is_employee", nullable = false)
-    private boolean isEmployee = false;
+    private Boolean isEmployee;
 
     @Override()
     public String toString() {

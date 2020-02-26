@@ -6,6 +6,7 @@ import edu.unapec.hhrr.infrastructure.dtos.commands.candidate.CandidateCreateCom
 import edu.unapec.hhrr.infrastructure.dtos.commands.candidate.CandidateUpdateCommandDto;
 import edu.unapec.hhrr.infrastructure.dtos.commands.language.LanguageUpdateCommandDto;
 import edu.unapec.hhrr.infrastructure.dtos.queries.skill.SkillQueryDto;
+import edu.unapec.hhrr.infrastructure.exceptions.ResourceNotFoundException;
 import edu.unapec.hhrr.infrastructure.exceptions.UserExistException;
 import edu.unapec.hhrr.infrastructure.repositories.RoleRepository;
 import edu.unapec.hhrr.infrastructure.repositories.UserRepository;
@@ -14,6 +15,7 @@ import edu.unapec.hhrr.infrastructure.repositories.queries.SkillQueryRepository;
 import edu.unapec.hhrr.infrastructure.security.jwt.JwtUtils;
 import edu.unapec.hhrr.infrastructure.security.services.UserDetailsImpl;
 import edu.unapec.hhrr.infrastructure.services.commands.CandidateCommandService;
+import edu.unapec.hhrr.infrastructure.services.commands.EmployeeCommandService;
 import edu.unapec.hhrr.infrastructure.services.queries.CandidateQueryService;
 import edu.unapec.hhrr.infrastructure.services.queries.JobQueryService;
 import io.swagger.annotations.Api;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,11 +65,15 @@ public class CandidateCommandController  extends EntityCommandController<Candida
     @Autowired
     JobQueryService jobQueryService;
 
+    private EmployeeCommandService employeeCommandService;
+
     public CandidateCommandController(@Autowired CandidateCommandService commandService, @Autowired ModelMapper mapper,
-                                      @Autowired CandidateQueryService candidateQueryService) {
+                                      @Autowired CandidateQueryService candidateQueryService,
+                                      @Autowired EmployeeCommandService employeeCommandService) {
         super(commandService, Candidate.class, CandidateCreateCommandDto.class,
                 CandidateUpdateCommandDto.class, mapper);
         this.candidateQueryService = candidateQueryService;
+        this.employeeCommandService = employeeCommandService;
     }
 
     @Override
@@ -169,5 +176,27 @@ public class CandidateCommandController  extends EntityCommandController<Candida
         }
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PostMapping("/{candidateId}/contract")
+    public void contract(@PathVariable Long candidateId) {
+        var optionalCandidate =  candidateQueryService.findById(candidateId);
+
+        if (optionalCandidate.isPresent()) {
+
+            var candidate = optionalCandidate.get();
+            var employee = mapper.map(candidate, Employee.class);
+
+            employee.setId(0L);
+            employee.setHireDate(LocalDateTime.now());
+            employee.setDepartmentId(7L);
+            employee.setVersion(0);
+
+            employeeCommandService.save(employee);
+            candidate.setIsEmployee(true);
+            commandService.save(candidate);
+        } else  {
+            throw new ResourceNotFoundException("Candidate not found");
+        }
+    }
 
 }

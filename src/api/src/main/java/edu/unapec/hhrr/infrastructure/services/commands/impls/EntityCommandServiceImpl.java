@@ -28,7 +28,7 @@ public abstract class EntityCommandServiceImpl<TEntity extends AuditableEntity, 
                 throw new NullPointerException(entity.getClass().getSimpleName() + ENTITY_NULL_MESSAGE);
             }
         } catch (Exception ex) {
-            var r = 0;
+            throw ex;
         }
     }
 

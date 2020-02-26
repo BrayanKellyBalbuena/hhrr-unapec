@@ -1,4 +1,6 @@
 package edu.unapec.hhrr.infrastructure.services.commands;
 
-public interface EmployeeCommandService {
+import edu.unapec.hhrr.core.entities.Employee;
+
+public interface EmployeeCommandService extends  EntityCommandService<Employee, Long> {
 }

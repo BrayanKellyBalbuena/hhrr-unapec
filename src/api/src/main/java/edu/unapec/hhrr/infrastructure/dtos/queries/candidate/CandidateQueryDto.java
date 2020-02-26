@@ -15,5 +15,5 @@ public class CandidateQueryDto extends AuditableQueryDto<Long> {
     private String lastName;
     private String email;
     private short age;
-    private boolean isEmployee;
+    private Boolean isEmployee;
 }

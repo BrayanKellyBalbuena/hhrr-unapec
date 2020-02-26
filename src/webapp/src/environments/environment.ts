@@ -39,6 +39,7 @@ export const endPoints = {
   trainingsByCandidateId: environment.host + environment.port + environment.api  + 'candidates/{id}/trainings/',
   languagesByCandidateId: environment.host + environment.port + environment.api  + 'candidates/{id}/languages/',
   skillsByCandidateId: environment.host + environment.port + environment.api  + 'candidates/{id}/skills/',
+  candidateContract: environment.host + environment.port + environment.api  + 'candidates/{id}/contract/'
 };
 
 /*

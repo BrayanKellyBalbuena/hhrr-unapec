@@ -1,4 +1,6 @@
 package edu.unapec.hhrr.infrastructure.services.queries;
 
-public interface EmployeeQueryService {
+import edu.unapec.hhrr.core.entities.Employee;
+
+public interface EmployeeQueryService extends  EntityQueryService<Employee, Long> {
 }

@@ -54,9 +54,10 @@
 </div>
 
 <span *nzModalFooter>
-  <button *ngIf="!candidate.isEmployee" nz-button nzType="primary" (click)="applyToJob()"
+  <button *ngIf="!candidate.isEmployee" nz-button nzType="primary" (click)="contract(candidate.id)"
     [nzLoading]="isConfirmLoading">Contract
   </button>
+  <span *ngIf="candidate.isEmployee">This candidate was contracted</span>
 </span>
 </nz-modal>
 

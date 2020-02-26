@@ -78,11 +78,15 @@ export class CandidateProfileComponent implements OnInit {
     );
   }
 
-  applyToJob() {
+  contract(candidateId: number) {
     this.toggleIsOkLoading();
-    this.candidateCommnadService.applyToJob(this.candidate.id) /*Change for converto to employee*/
-    .subscribe(() => this.toggleIsOkLoading(),
-    err => {console.log(err); this.toggleIsOkLoading()});
+    this.candidateCommnadService.contract(this.candidate.id) /*Change for converto to employee*/
+    .subscribe(() => {
+      this.messageService.success('Employee contract succes') ;
+      this.toggleIsOkLoading();
+      this.candidate.isEmployee = true;
+    },
+    (err: HttpErrorResponse) => {this.messageService.error(err.error['message']); this.toggleIsOkLoading()});
   }
 
   toggleIsOkLoading() {

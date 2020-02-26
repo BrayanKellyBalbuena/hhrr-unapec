@@ -17,4 +17,8 @@ export class CandidateCommandService  extends BaseCommandService<CandidateCreate
   public applyToJob(jobId: number) {
     return this.httpClient.post(endPoints.candidateJobApply + jobId, {});
   }
+
+  public contract(candidateId: number) {
+    return this.httpClient.post(endPoints.candidateContract.replace('{id}', candidateId.toString()) , {});
+  }
 }

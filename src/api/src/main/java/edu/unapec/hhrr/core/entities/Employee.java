@@ -9,6 +9,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity(name = "Employee")
 @Table(name = "employees", indexes = {@Index(name = "idx_employees_isActive", columnList = "is_active"),
@@ -17,9 +18,10 @@ import java.time.LocalDate;
 @Where(clause = "is_active = true")
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 public class Employee extends AdultPerson<Long> {
 
-    private LocalDate hireDate;
+    private LocalDateTime hireDate = LocalDateTime.now();
     @Column(name = "department_id", nullable = false)
     private Long departmentId;
 
@@ -29,5 +31,5 @@ public class Employee extends AdultPerson<Long> {
     private Department department;
 
     @Column(name = "montly_salary", columnDefinition="Decimal(10,2)", nullable = false, precision = 10, scale = 2)
-    private Double montlySalary;
+    private Double montlySalary = 50000.00;
 }

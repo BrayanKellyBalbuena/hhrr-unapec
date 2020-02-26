@@ -40,7 +40,6 @@ public class JobsQueryController extends CatalogQueryController<Job, JobQueryDto
     @GetMapping("/{id}/candidates")
     public ResponseEntity<Page<CandidateQueryDto>> getApplyCandidates(@PathVariable Long id, PageRequestDto pageRequestDto){
         var candidates = candidateQueryService.findAllCandidatesByApplyJobId(id, pageRequestDto);
-
         return ResponseEntity.ok(candidates.map(c -> mapper.map(c, CandidateQueryDto.class)));
     }
 }
