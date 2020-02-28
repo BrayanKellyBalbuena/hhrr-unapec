@@ -1,0 +1,69 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk(form)"
+  [nzOkLoading]="isOkLoading"
+>
+<app-alert [showAlert]=showAlert></app-alert>
+
+<button nz-button  class="green-6" (click)="showModal()">
+  <i nz-icon nzType="plus"></i>
+  Create new
+</button>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk(form)"
+  [nzOkLoading]="isOkLoading"
+>
+<app-alert [showAlert]=showAlert></app-alert>
+
+<form nz-form name="form" #form="ngForm" novalidate>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzSpan]="6">Name</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Input is required and minlength is 4">
+      <input nz-input [(ngModel)]="tempTraining.name" name="name" #name = "ngModel" required minlength="4"
+      [class.has-error]="formSubmitted && name.invalid"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzSpan]="6">Description</nz-form-label>
+    <nz-form-control  nzHasFeedback [nzSpan]="12" nzErrorTip="Required">
+      <textarea nz-input [(ngModel)]="tempTraining.description" name="description" #desc="ngModel" required
+      [class.has-error]="formSubmitted && desc.invalid"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label  [nzSm]="6" nzHasFeedback [nzXs]="24" nzRequired [nzSpan]="6">Date From</nz-form-label>
+    <nz-date-picker name="dateFrom" #dateFrom = "ngModel" [(ngModel)]="tempTraining.dateFrom"
+    (ngModelChange)="dateToChange($event)" required [class.has-error]="formSubmitted && dateFrom.invalid">
+    </nz-date-picker>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzSpan]="6">Date To</nz-form-label>
+    <nz-date-picker name="dateTo" #dateTo = "ngModel" [(ngModel)]="tempTraining.dateTo"
+    (ngModelChange)="dateFromChange($event)" required [class.has-error]="formSubmitted && dateTo.invalid">
+    </nz-date-picker>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzSpan]="6">Institution</nz-form-label>
+  <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Require">
+    <nz-select name="institutionId"
+    #institution = "ngModel"
+    nzShowSearch nzAllowClear
+    [class.has-error]="formSubmitted && institution.invalid"
+    nzPlaceHolder="Select a skill"
+     [(ngModel)] = "tempTraining.institutionId"required>
+      <nz-option *ngFor = "let institution of institutions" [nzValue] = "institution.id"
+      [nzLabel] = "institution.name"></nz-option>
+    </nz-select>
+  </nz-form-control>
+  </nz-form-item>
+</form>
+</nz-modal>
+

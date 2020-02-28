@@ -1,0 +1,47 @@
+
+    <nz-layout class="full-heigth">
+      <nz-layout>
+        <nz-header class= "header">
+          <div class="logo"><h2>{{title}}</h2> </div>
+        </nz-header>
+        <nz-layout>
+      <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+          <li  nz-submenu *ngFor="let submenu of navitationSubmenus" [nzTitle] = "submenu.title"
+           [nzIcon] = "submenu.icon">
+            <ul *ngIf="submenu.items.length > 0">
+              <li *ngFor="let item of submenu.items" nz-menu-item>
+                <a [routerLink]= "item.url">{{item.title}}</a>
+              </li>
+            </ul>
+          <li nz-menu-item (click)="logout()">
+            <i nz-icon nzType="logout"></i>
+            <span>Logout</span>
+          </li>
+        </ul>
+      </nz-sider>
+      <nz-layout>
+        <nz-header class="siderButtom">
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            (click)="isCollapsed = !isCollapsed"
+          ></i>
+        </nz-header>
+        <div nz-row>
+          <div nz-col  nzSpan="24">
+            <nz-content>
+              <div class="inner-content">
+                <router-outlet></router-outlet>
+              </div>
+            </nz-content>
+          </div>
+          <nz-affix nzOffsetBottom="0">
+            <div nz-col  nzSpan="24">
+              <nz-footer>Human Resource System made by Brayan Kelly</nz-footer>
+            </div>
+          </nz-affix>
+      </div>
+      </nz-layout>
+    </nz-layout>

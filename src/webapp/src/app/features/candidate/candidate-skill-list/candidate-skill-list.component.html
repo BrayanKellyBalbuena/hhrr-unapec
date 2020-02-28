@@ -1,0 +1,54 @@
+<div class="table-operations">
+  <app-alert [showAlert]=showAlert></app-alert>
+
+  <div nz-row nzType="flex" nzJustify="center">
+    <div nz-col  nzSpan="4">
+      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Search by" [(ngModel)]="selectedFilter">
+        <nz-option *ngFor="let filter of filtersProperties" nzLabel={{filter.displayName}} nzValue={{filter.value}}>
+        </nz-option>
+      </nz-select>
+    </div>
+    <div nz-col nzSpan="6">
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input type="text" [formControl]="searchField" placeholder="input search text" nz-input
+          [(ngModel)]="inputSearch" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+    </div>
+    <!-- Modals create and update -->
+    <div nz-col nzSpan="6" nzOffset="2">
+      <app-candidate-add-skill (createCompleted) = "onCreateCompleted($event)"></app-candidate-add-skill>
+    </div>
+    <br />
+  </div>
+</div>
+<nz-divider></nz-divider>
+<nz-table #ajaxTable nzShowSizeChanger [nzFrontPagination]="false" [nzData]="listOfData" [nzLoading]="loading"
+  [nzTotal]="totalPage" [(nzPageIndex)]="pageRequest.pageNumber" [(nzPageSize)]="pageRequest.pageSize"
+  (nzPageIndexChange)="searchData()" (nzPageSizeChange)="searchData(true)">
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th *ngFor="let sortPropery of sortProperties" nzShowSort nzSortKey={{sortPropery.value}}>
+        <span>{{sortPropery.displayName}}</span>
+      </th>
+      <th><span>Actions</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of listOfData; let i = index">
+      <td>{{ data.id}}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.description }}</td>
+      <td>
+        <div nz-row nz-row nzGutter="10">
+          <span nz-col class="gutter-row">
+            <button nz-button nzType="danger" (click) = delete(data.id)> <i nz-icon nzType="delete"></i></button>
+          </span>
+        </div>
+
+    </td>
+    </tr>
+  </tbody>
+</nz-table>

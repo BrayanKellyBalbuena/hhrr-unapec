@@ -1,0 +1,17 @@
+
+
+<div class="back">
+  <div nz-row nzType="flex" nzJustify="center" nzAlign="middle">
+    <div nz-col *ngIf="!displayRegister" [nzSpan]="8">
+      <nz-card class="card-login" nzTitle="Login">
+        <app-login (display) = "onDisplay($event)"></app-login>
+      </nz-card>
+    </div>
+    <div *ngIf="displayRegister" nz-col [nzSpan]="12">
+      <nz-card class="card-register" nzTitle="Register">
+        <app-candidate-create></app-candidate-create>
+      </nz-card>
+    </div>
+  </div>
+</div>
+

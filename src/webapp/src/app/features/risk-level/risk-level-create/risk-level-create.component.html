@@ -1,0 +1,29 @@
+<button nz-button  class="green-6" (click)="showModal()">
+  <i nz-icon nzType="plus"></i>
+  Create new
+</button>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk(form)"
+  [nzOkLoading]="isOkLoading"
+>
+<app-alert [showAlert]=showAlert></app-alert>
+
+<form nz-form #form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5">Name</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Input is required and minlength is 3">
+      <input nz-input [(ngModel)]="tempRiskLevel.name" name="name" required minlength="3"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5">Description</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="MaxLength is 6">
+      <textarea nz-input [(ngModel)]="tempRiskLevel.description" name="description"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+</nz-modal>

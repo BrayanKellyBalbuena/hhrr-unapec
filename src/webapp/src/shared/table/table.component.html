@@ -1,0 +1,56 @@
+<!-- <div class="table-operations">
+  <div nz-row>
+    <div nz-col nzSpan="4">
+    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Search by" [(ngModel)]="selectedFilter">
+      <nz-option *ngFor="let filter of filtersProperties"  nzLabel= {{filter.displayName}}
+       nzValue= {{filter.value}}></nz-option>
+    </nz-select>
+    </div>
+    <div nz-col nzSpan="6">
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input type="text"
+         placeholder="input search text"
+         nz-input
+        [(ngModel)]="inputSearch"
+        (input)="onInputSearch($event.target?.value)"
+        [nzAutocomplete]="auto" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+      <nz-autocomplete nzBackfill #auto>
+         <nz-auto-option *ngFor="let option of options" [nzValue]="option">
+          {{ option }}
+        </nz-auto-option>
+      </nz-autocomplete>
+  </div>
+  <br/>
+  </div>
+    </div>
+    <nz-table
+        #ajaxTable
+        nzShowSizeChanger
+        [nzFrontPagination]="false"
+        [nzData]="listOfData"
+        [nzLoading]="loading"
+        [nzTotal]="totalPage"
+        [(nzPageIndex)]="pageRequest.pageNumber"
+        [(nzPageSize)]="pageRequest.pageSize"
+        (nzPageIndexChange)="searchData()"
+        (nzPageSizeChange)="searchData(true)" >
+        <thead (nzSortChange)="sort($event)" nzSingleSort>
+          <tr>
+            <th *ngFor="let sortPropery of sortProperties" nzShowSort nzSortKey={{sortPropery.value}}>
+              <span>{{sortPropery.displayName}}</span>
+            </th>
+            <th nzShowFilter [nzFilters]="filterGender" (nzFilterChange)="updateFilter($event)">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of listOfData; let i = index" >
+            <td>{{ data.id}}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.description }}</td>
+          </tr>
+        </tbody>
+      </nz-table> -->

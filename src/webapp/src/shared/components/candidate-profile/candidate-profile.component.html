@@ -1,0 +1,63 @@
+<nz-modal class="profile-modal"
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  (nzOnCancel)="handleCancel()"
+>
+
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <h3>Personal Information</h3>
+  </div>
+  <div nz-col nzSpan="10">
+    <p>Identity Card: {{candidate.identityCard}}</p>
+  </div>
+  <div nz-col nzSpan="7">
+    <p>First Name: {{candidate.firstName}}</p>
+  </div>
+  <div nz-col nzSpan="7">
+    <p>Last Name: {{candidate.lastName}}</p>
+  </div>
+  <div nz-col nzSpan="24">
+    <p>Age: {{candidate.age}}</p>
+  </div>
+  <div nz-col nzSpan="24">
+    <h3>Trainings</h3>
+  </div>
+  <div nz-col nzSpan=24>
+    <ul>
+      <li *ngFor="let training of trainings">
+        {{training.name}} | {{training.institutionName}} |
+        {{training.dateFrom}} to {{training.dateTo}}
+      </li>
+    </ul>
+  </div>
+  <div nz-col nzSpan="24">
+    <h3>Skills</h3>
+  </div>
+  <div nz-col nzSpan=24>
+    <ul>
+      <li *ngFor="let skill of skills">
+        {{skill.name}} {{skill.description}}
+      </li>
+    </ul>
+  </div>
+  <div nz-col nzSpan="24">
+    <h3>Languages</h3>
+  </div>
+  <div nz-col nzSpan=24>
+    <ul>
+      <li *ngFor="let language of languages">
+        {{language.name}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<span *nzModalFooter>
+  <button *ngIf="!candidate.isEmployee" nz-button nzType="primary" (click)="contract(candidate.id)"
+    [nzLoading]="isConfirmLoading">Contract
+  </button>
+  <span *ngIf="candidate.isEmployee">This candidate was contracted</span>
+</span>
+</nz-modal>
+

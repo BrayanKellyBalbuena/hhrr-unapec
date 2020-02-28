@@ -1,61 +1,22 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import {
-  NbAuthComponent,
-  NbLoginComponent,
-  NbLogoutComponent,
-  NbRegisterComponent,
-  NbRequestPasswordComponent,
-  NbResetPasswordComponent,
-} from '@nebular/auth';
+import { Routes, RouterModule } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
+import { SigninSignupComponent } from './layout/signin-signup/signin-signup.component';
+import { AuthGuardService as AuthGuard  } from '../shared/services/auth-guard.service';
+import { LoginComponent } from './features/security/login/login.component';
+import { CandidateCreateComponent } from './features/candidate/candidate-create/candidate-create.component';
+import { CandidateJobSeachListComponent } from './features/candidate/candidate-search-jobs/candidate-search-jobs.component';
 
 const routes: Routes = [
-  {
-    path: 'pages',
-    loadChildren: () => import('app/pages/pages.module')
-      .then(m => m.PagesModule),
-  },
-  {
-    path: 'auth',
-    component: NbAuthComponent,
-    children: [
-      {
-        path: '',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'login',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
-      },
-    ],
-  },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+    {path: '', component: LayoutComponent, canActivate: [AuthGuard]},
+    {path: 'candidate-register', component: CandidateCreateComponent},
+    {path: 'login', component: LoginComponent},
+    { path: 'home', loadChildren: () => import(`./layout/layout.module`).then(m => m.LayoutModule) },
+    { path: '', redirectTo: '', pathMatch: 'full' },
+    // { path: '**', component: Page404Component },
 ];
-
-const config: ExtraOptions = {
-  useHash: false,
-};
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes, config)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes,{ enableTracing: false })],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule  { }

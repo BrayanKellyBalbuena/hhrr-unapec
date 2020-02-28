@@ -1,0 +1,34 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+>
+
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <h2>{{job.name}}</h2>
+  </div>
+  <div nz-col nzSpan="24">
+    <h3>Description</h3>
+    <p>{{job.description}}</p>
+  </div>
+  <div nz-col nzSpan="24">
+      <h3>Benefits</h3>
+      <ul>
+        <li>Minumun salary: ${{job.mininumSalary}}</li>
+        <li>Max salary: ${{job.maximunSalary}}</li>
+      </ul>
+  </div>
+  <div>
+    <h3>Risk Level</h3>
+    <p>{{job.riskLevelName}}</p>
+  </div>
+</div>
+
+<span *nzModalFooter>
+  <button *ngIf="showApplyButton" nz-button nzType="primary" (click)="applyToJob()"
+    [nzLoading]="isConfirmLoading">Apply
+  </button>
+</span>
+</nz-modal>
+
